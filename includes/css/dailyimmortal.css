@@ -1,0 +1,600 @@
+:root {
+    /* Light Mode */
+    --light-table-bg: #212529;
+    --light-table-striped-bg: #2c3034;
+    --light-table-striped-color: #fff;
+    --light-table-active-bg: #373b3e;
+    --light-table-active-color: #fff;
+    --light-table-hover-bg: #323539;
+    --light-table-hover-color: #fff;
+
+    --light-switch-shadow: #373d4e;
+    --light-switch-icon: "🌚";
+
+    /* Dark Mode */
+    --dark-table-bg: #0D1212;
+    --dark-table-striped-bg: #192121;
+    --dark-table-striped-color: #fff;
+    --dark-table-active-bg: #373b3e;
+    --dark-table-active-color: #fff;
+    --dark-table-hover-bg: #0D1212;
+    --dark-table-hover-color: #fff;
+
+    --dark-switch-shadow: #fce477;
+    --dark-switch-icon: "🌝";
+
+    /* Default Mode */
+    --bs-table-bg: var(--light-table-bg);
+    --bs-table-striped-bg: var(--light-table-striped-bg);
+    --bs-table-striped-color: var(--light-table-striped-color);
+    --bs-table-active-bg: var(--light-table-active-bg);
+    --bs-table-active-color: var(--light-table-active-color);
+    --bs-table-hover-bg: var(--light-table-hover-bg);
+    --bs-table-hover-color: var(--light-table-hover-color);
+
+    --switch-shadow-color: var(--light-switch-shadow);
+    --switch-icon: var(--light-switch-icon);
+}
+
+.main-switch:checked ~ #page {
+    --switch-shadow-color: var(--dark-switch-shadow);
+    --switch-icon: var(--dark-switch-icon);
+}
+
+.theme-switch:checked ~ .activity_table {
+    --bs-table-bg: var(--dark-table-bg);
+    --bs-table-striped-bg: var(--dark-table-striped-bg);
+    --bs-table-striped-color: var(--dark-table-striped-color);
+    --bs-table-active-bg: var(--dark-table-active-bg);
+    --bs-table-active-color: var(--dark-table-active-color);
+    --bs-table-hover-bg: var(--dark-table-hover-bg);
+    --bs-table-hover-color: var(--dark-table-hover-color);
+}
+
+.main-switch {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.theme-switch {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.switch-label {
+    cursor: pointer;
+    display: flex;
+}
+
+.switch-label::before {
+    content: var(--switch-icon);
+    font-size: 20px;
+    transition: text-shadow .2s;
+}
+
+.switch-label::after {
+    color: var(--switch-shadow-color);
+}
+
+.theme-switch:focus ~ #page .switch-label::before,
+.switch-label:hover::before {
+    text-shadow: 0 0 15px var(--switch-shadow-color);
+}
+
+.theme-switch:focus ~ #page .switch-label::after,
+.switch-label:hover::after {
+    opacity: 1;
+}
+
+body {
+    background:#050206;
+    color: #c3c3c3;
+    padding-top: 75px;
+    font-family: 'Bitter', serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.table_container {
+    padding-top: 75px;
+    margin-top: -75px;
+    margin-bottom: 10px;
+}
+
+.nav-char {
+    color: rgba(255,255,255,.55);
+}
+
+.navbar-nav > li > .dropdown-menu {
+    background-color: #343a40;
+    margin-bottom: 10px;
+}
+
+.navbar-nav > li > .dropdown-menu > a {
+    color: #FFF;
+}
+
+.navbar-nav > li > .dropdown-menu > a:hover {
+    color: #000;
+}
+
+.nav-right {
+    flex-direction: row;
+}
+
+.navbar-dark .nav-right .nav-link,
+.nav-right .nav-link,
+.navbar-dark .nav-right .nav-link:focus,
+.navbar-dark .nav-right .nav-link:hover {
+    display: inline-block;
+    background-color: #1f2f38;
+    color: #FFF;
+    font-weight: 900;
+    font-size: 1.25rem;
+    line-height: 1rem;
+    margin-left: 5px;
+}
+
+.nav-icon-bar {
+    padding: 0.5rem 1rem;
+}
+
+.nav-icon {
+    padding-right: 5px;
+}
+
+#profile-name {
+    font-size: 1rem;
+    font-weight: normal;
+    vertical-align: top;
+    margin-right: 5px;
+}
+
+#profile-control {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    min-width: 265px;
+    background: #333;
+    padding: 5px;
+    z-index: 100;
+}
+
+#profile-list {
+    margin: 0 0 7px 0;
+    padding: 0;
+    list-style-position: inside;
+}
+
+.profile-delete {
+    margin-left: 5px;
+    padding: 0 5px;
+}
+
+#compact-button span.expanding_text,
+#layout-button span.expanding_text {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.form-control.is-invalid {
+    padding: .375rem .75rem;
+}
+
+/* remove silly tbody top border from bs5 :/ */
+.table > :not(:first-child) {
+    border-top: 0;
+}
+
+/* reset padding back to what it was like in bs4 */
+.table > :not(caption) > * > * {
+    padding: 0.75rem;
+}
+
+div.table_container[data-hide="hide"] table tbody {
+    display: none;
+}
+
+.expanding_button {
+    white-space: nowrap;
+}
+
+.expanding_button span.expanding_text {
+    max-width: 0;
+    -webkit-transition: max-width 0.5s;
+    transition: max-width 0.5s;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.expanding_button:hover span {
+    max-width: 7rem;
+}
+
+div.table_container .unhide_button {
+    display: inline-block;
+}
+
+div.table_container .unhide_button {
+    display: none;
+}
+
+div.table_container[data-hide="hide"] .hide_button {
+    display: none;
+}
+
+div.table_container[data-hide="hide"] .unhide_button {
+    display: inline-block;
+}
+
+.activity_table th {
+    font-size: 1.5em;
+    vertical-align: top;
+    width: 70%;
+    border: none;
+}
+
+.activity_table thead td {
+    text-align:right;
+    position: relative;
+}
+
+.activity_table td.activity_name {
+    padding:0;
+    height: 100%;
+    width: 70%;
+    min-height:69px;
+    position: relative;
+}
+
+.activity_table td.activity_name a,
+.activity_table td.activity_name a:active,
+.activity_table td.activity_name a:link,
+.activity_table td.activity_name a:visited {
+    color: #A1B1B8;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    line-height: 1rem;
+    text-decoration: none;
+}
+
+.activity_table td.activity_name a:hover {
+    text-decoration: underline;
+    color: #4083ca;
+}
+
+.activity_table tr:hover a::after {
+    content: '';
+    width: .6em;
+    height: .75em;
+    display: inline-block;
+    background-image: url("data:image/svg+xml;utf8;base64,PHN2ZyBoZWlnaHQ9IjEwMjQiIHdpZHRoPSI3NjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbD0iIzQwODNDQSI+PHBhdGggZD0iTTY0MCA3NjhIMTI4VjI1Ny45MDU5OTk5OTk5OTk5NUwyNTYgMjU2VjEyOEgwdjc2OGg3NjhWNTc2SDY0MFY3Njh6TTM4NCAxMjhsMTI4IDEyOEwzMjAgNDQ4bDEyOCAxMjggMTkyLTE5MiAxMjggMTI4VjEyOEgzODR6Ii8+PC9zdmc+");
+    background-size: auto;
+    background-size: cover;
+    position: relative;
+    top: 1px;
+    left: 5px;
+}
+
+.activity_table td.activity_color {
+    cursor: pointer;
+}
+
+.activity_table td.activity_color .activity_check_off {
+    margin-right: 5px;
+}
+
+.activity_table td.activity_color .activity_check_on {
+    margin-right: 5px;
+    display: none;
+    visibility: hidden;
+}
+
+.activity_table td.activity_name button.hide-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+}
+
+.activity_table td.activity_name button.note-button {
+    position: absolute;
+    top: 5px;
+    right: 40px;
+    display: none;
+}
+
+.activity_table tbody tr:hover td.activity_name button.hide-button {
+    display: inline-block;
+}
+
+.activity_table tbody tr:hover td.activity_name button.note-button {
+    display: inline-block;
+}
+
+.activity_table td.activity_color a,
+.activity_table td.activity_color a:active,
+.activity_table td.activity_color a:link,
+.activity_table td.activity_color a:visited {
+    color: #A1B1B8;
+    text-decoration: underline;
+}
+
+.activity_table td.activity_color a:hover {
+    color: #4083ca;
+}
+
+.activity_table tr[data-completed="true"] .activity_color {
+    background-color: #163600;
+    box-shadow: inset 0 0 0 9999px #163600;
+}
+
+.activity_table tr[data-completed="hide"] {
+    display: none;
+    visibility: hidden;
+}
+
+.activity_table tr[data-completed="true"] .activity_color {
+    background-color: #163600;
+    box-shadow: inset 0 0 0 9999px #163600;
+}
+
+.activity_table tr[data-completed="true"] .activity_color .activity_check_off {
+    display: none;
+    visibility: hidden;
+}
+
+.activity_table tr[data-completed="true"] .activity_color .activity_check_on {
+    display: inline-block;
+    visibility: visible;
+}
+
+/*.activity_table {*/
+/*    --bs-table-bg: var(--table-bg);*/
+/*    --bs-table-striped-bg: var(--table-striped-bg);*/
+/*    --bs-table-striped-color: var(--table-striped-color);*/
+/*    --bs-table-active-bg: var(--table-active-bg);*/
+/*    --bs-table-active-color: var(--table-active-color);*/
+/*    --bs-table-hover-bg: var(--table-hover-bg);*/
+/*    --bs-table-hover-color: var(--table-hover-color);*/
+/*}*/
+
+.activity_table thead {
+    --bs-table-bg: #2B2D32;
+}
+
+.compact .activity_tables {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+}
+
+.compact .activity_tables .table_container {
+    margin: 0 10px;
+    /* width: 40%;
+    width: calc(50% - 20px); */
+    min-width: 420px;
+    padding-top: 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.compact .activity_table thead tr {
+    display: flex;
+}
+
+.compact .activity_table tbody tr {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.compact .activity_table td {
+    border: none;
+}
+
+.compact .activity_table tbody tr[data-completed="hide"] {
+    display: none;
+}
+
+.compact td.activity_roster {
+    display: none;
+}
+
+.compact .activity_table th,
+.compact .activity_table td.activity_name {
+    width: 100%;
+    width: calc(100%-20px);
+}
+
+.compact .activity_table td.activity_name {
+    min-height: 48px;
+    display: flex;
+}
+
+.compact .activity_table td.activity_name a,
+.compact .activity_table td.activity_name a:active,
+.compact .activity_table td.activity_name a:link,
+.compact .activity_table td.activity_name a:visited {
+    position: relative;
+}
+
+.compact .activity_color {
+    text-align: center;
+    min-height: 48px;
+    min-width: 48px;
+}
+
+.compact .activity_desc {
+    display: none;
+    visibility: hidden;
+}
+
+.compact .activity_table td.activity_color .activity_check_off,
+.compact .activity_table td.activity_color .activity_check_on {
+    margin-right: 0;
+}
+
+.compact .activity_table td.activity_color .item_profit {
+    position: absolute;
+    right: 5px;
+    z-index: 100;
+}
+
+.compact .activity_table td.activity_color .item_profit .item_profit_label {
+    display: none;
+    visibility: hidden;
+}
+
+.compact .activity_table td.activity_name button.hide-button {
+    /* left: 10px; */
+    position: relative;
+    top: auto;
+    right: auto;
+}
+
+.compact .activity_table td.activity_name button.note-button {
+    /* left: 10px; */
+    position: relative;
+    top: auto;
+    right: auto;
+}
+
+.countdown {
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+#warbands-countdown {
+    font-size: 1rem;
+    white-space: nowrap;
+    font-weight: 900;
+}
+
+.dragover {
+    opacity: 0.4;
+    border: 3px dotted #666;
+}
+
+footer {
+    text-align: center;
+    margin-top: 15px;
+}
+
+footer a,
+footer a:active,
+footer a:link,
+footer a:visited {
+    color:#777;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer a img {
+    height: 16px;
+    width: 16px;
+}
+
+@media (max-width: 767px) {
+    .activity_table th,
+    .activity_table td.activity_name {
+        width: 50%;
+    }
+
+    .activity_table a {
+        text-decoration: underline;
+    }
+}
+
+@media (max-width: 992px) {
+    #profile-control {
+        right: auto;
+        left: 0;
+    }
+
+    #profile-button,
+    #layout-button {
+        padding: 10px;
+    }
+
+    .compact .activity_tables .table_container {
+        width: 100%
+    }
+}
+
+@media (min-width:768px) {
+    .activity_table th,
+    .activity_table td.activity_name {
+        width: 60%;
+    }
+}
+
+@media (min-width:992px) {
+    .activity_table th,
+    .activity_table td.activity_name {
+        width: 66%;
+    }
+}
+
+.interact {
+  touch-action: none;
+  user-select: none;
+}
+
+.icon {
+    height: 24px;
+    width: 24px;
+    margin-right: 5px;
+}
+
+.checkbox {
+    display:inline-block;
+    height: 24px;
+    width: 24px;
+    border-radius: 0px;
+    border: 1px solid #475155
+}
+
+.checkboxed {
+    display:inline-block;
+    height: 24px;
+    width: 24px;
+    border-radius: 0px;
+    border: 1px solid #475155
+}
+
+.checkboxed:after {
+    /* Vector */
+    position: static;
+    width: 13.5px;
+    height: 9px;
+    left: 5.25px;
+    top: 7.5px;
+
+    border: 3px solid #6FC700;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 0px;
+
+}
+
+

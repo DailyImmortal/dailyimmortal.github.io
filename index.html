@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P7BSBRHHE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-1P7BSBRHHE');
+        gtag('config', 'UA-223026468-1');
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>DailyImmortal - Diablo Immortal Dailies and Weeklies Checklist</title>
+    <link rel="shortcut icon" href="https://dailyimmortal.github.io/includes/img/dailyimmortal.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="includes/css/dailyimmortal.css?v=23">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <script src="includes/json/DC.js?v=1"></script>
+    <script src="includes/json/DR.js?v=1"></script>
+    <script src="includes/json/WC.js?v=1"></script>
+    <script src="includes/json/WR.js?v=1"></script>
+
+    <script src="includes/js/dailyimmortal.js?v=37"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.10.11/interact.min.js"></script>
+    <script src="includes/js/interact.js?v=2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+
+    <meta name="title" content="DailyImmortal">
+    <meta name="description" content="Dailies and Weeklies Checklist for Diablo Immortal">
+
+
+    <meta name="theme-color" content="#1f2f38">
+</head>
+<body>
+
+<input type="checkbox" class="main-switch" id="main-switch"/>
+<div id="page">
+    <nav class="navbar nav-pills fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href=".">
+                <img src="includes/img/dailyimmortal.png" alt="DailyImmortal - Dailies and Weeklies Checklist"
+                     width="24" height="24" class="d-inline-block align-text-top">
+                DailyImmortal
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li>
+                        <div class="nav-icon-bar" title="Daily Reset">
+                            <i class="fa-solid fa-calendar-day nav-icon" title="Daily Reset"></i><b>Daily: </b><span
+                                id="countdown-dailies" class="countdown"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-icon-bar" title="Weekly Reset">
+                            <i class="fa-solid fa-calendar-week nav-icon" title="Weekly Reset"></i><b>Weekly: </b><span
+                                id="countdown-weeklies" class="countdown"></span>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav nav-pills ms-auto nav-right">
+                    <li class="nav-item">
+                        <a class="nav-link expanding_button" href="#" title="Theme switcher"><label for="main-switch" class="switch-label"></label></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link expanding_button" href="#" id="layout-button"
+                           title="Reset Positions, Hidden Tasks, and Unchecks Tasks">↺<span class="expanding_text">&nbsp;Reset All</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link expanding_button" href="#" id="compact-button" title="Toggle Layout">⊟<span
+                                class="expanding_text">&nbsp;Compact Mode</span></a>
+                    </li>
+                    <li class="nav-item">
+                    <span id="character-control">
+                        <form autocomplete="off">
+                        </form>
+                    </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-xl activity_tables" id="characters_body">
+        <div id="dailies" class="table_container dailies_table interact draggable" data-x="0" data-y="0">
+            <input type="checkbox" class="theme-switch" />
+            <table id="dailies_table" class="activity_table table table-dark table-striped table-hover"
+                   data-timeframe="dailies">
+                <thead>
+                <tr>
+                    <th>Dailies</span></th>
+                    <td>
+                        <span class="text-nowrap">
+                            <button class="drag-handle expanding_button btn btn-secondary btn-sm active"
+                                    title="Click, hold and drag to move section">✥<span
+                                    class="expanding_text"> Move</span></button>
+                            <button id="dailies_hide_button"
+                                    class="hide_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Hide section">▲<span class="expanding_text"> Hide</span></button>
+                            <button id="dailies_unhide_button"
+                                    class="unhide_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button>
+                            <button id="dailies_reset_button"
+                                    class="reset_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Completely reset checked items, hiding, position, and order to default">↺<span
+                                    class="expanding_text"> Reset</span></button>
+                        </span>
+                    </td>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div id="weeklies" class="table_container weeklies_table draggable" data-x="0" data-y="0">
+            <input type="checkbox" class="theme-switch" />
+            <table id="weeklies_table" class="activity_table table table-dark table-striped table-hover"
+                   data-timeframe="weeklies">
+                <thead>
+                <tr>
+                    <th>Weeklies</span></th>
+                    <td>
+                        <span class="text-nowrap">
+                            <button class="drag-handle expanding_button btn btn-secondary btn-sm active"
+                                    title="Click, hold and drag to move section">✥<span
+                                    class="expanding_text"> Move</span></button>
+                            <button id="weeklies_hide_button"
+                                    class="hide_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Hide section">▲<span class="expanding_text"> Hide</span></button>
+                            <button id="weeklies_unhide_button"
+                                    class="unhide_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button>
+                            <button id="weeklies_reset_button"
+                                    class="reset_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Completely reset checked items, hiding, position, order to default">↺<span
+                                    class="expanding_text"> Reset</span></button>
+                        </span>
+                    </td>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <template id="sample_row">
+        <tr draggable="true">
+            <td class="activity_name" draggable="false">
+                <a target="_blank" rel="noopener noreferrer" draggable="false">Name</a>
+                <!-- <button class="note-button expanding_button btn btn-primary btn-sm active">📓<span class="expanding_text"> Note</span></button> -->
+                <button class="hide-button expanding_button btn btn-danger btn-sm active">⊘<span class="expanding_text"> Hide</span>
+                </button>
+            </td>
+            <td class="activity_color">
+                <span class="activity_check_off checkbox"></span>
+                <span class="activity_check_on checkboxed">
+                <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.25 6L5.75 10.5L14.75 1.5" stroke="#6FC700" stroke-width="3"/>
+                </svg>
+            </span>
+                <span class="activity_desc">&nbsp;</span>
+            </td>
+        </tr>
+    </template>
+
+    <div id="tooltip" style="display:none; visibility: hidden;"></div>
+    <input type="file" id="import" style="display:none"/>
+</div>
+
+<footer>
+    <p>
+        <a href="https://github.com/dailyimmortal/dailyimmortal.github.io" target="_blank" rel="noopener noreferrer"><img
+                src="/includes/img/github.png">Github</a>
+    </p>
+    <p><a href="https://dailyimmortal.github.io/privacy.html">Privacy Policy</a></p>
+</footer>
+
+</body>
+</html>
