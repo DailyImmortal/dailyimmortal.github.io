@@ -31,7 +31,7 @@ var dailies = {
         task: "Bounties",
         url: "#",
         short: true,
-        desc: "Complete 8 Bounties",
+        desc: "Complete 8 Bounties (can stack up to 24 if not all are completed in a day)",
         img: "placeholder"
     },
     "daily-challenge-reward": {
