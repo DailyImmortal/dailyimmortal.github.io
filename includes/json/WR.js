@@ -14,13 +14,13 @@ var weeklies = {
     "elder-rifts": {
         task: "Elder Rifts",
         url: "#",
-        desc: "Run Elder Rifts to collect 200 ember",
+        desc: "Run Elder Rifts to collect 320 ember",
         img: "placeholder"
     },
     "helliquary": {
         task: "Helliquary",
         url: "#",
-        desc: "Kill ALL of the Helliquary Bosses that you are able to at least twice per week. ",
+        desc: "Kill ALL of the Helliquary Bosses that you are able to. Resets every Monday and Thursday.",
         img: "placeholder"
     },
     "hilt": {
@@ -32,7 +32,7 @@ var weeklies = {
     "vault": {
         task: "Vault",
         url: "#",
-        desc: "Complete vault runs until max rewards",
+        desc: "Complete vault runs until max rewards. Available 12pm-2pm and 7pm-9pm server time.",
         img: "placeholder"
     },
 };

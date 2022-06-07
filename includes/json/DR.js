@@ -34,11 +34,32 @@ var dailies = {
         desc: "Complete 8 Bounties",
         img: "placeholder"
     },
+    "daily-challenge-reward": {
+        task: "Daily Challenge Rewards",
+        url: "#",
+        short: true,
+        desc: "Claim the daily challenge rewards at the Challenge Rift",
+        img: "placeholder"
+    },
     "daily-elder": {
         task: "Elder Rift",
         url: "#",
         short: true,
         desc: "Collect 3 Daedessa's Blessing rewards from elder rifts",
+        img: "placeholder"
+    },
+    "daily-first": {
+        task: "First Kill of The Day",
+        url: "#",
+        short: true,
+        desc: "Defeat at least one monster a day to earn a free reward.",
+        img: "placeholder"
+    },
+    "daily-reward": {
+        task: "Free Daily Rewards",
+        url: "#",
+        short: true,
+        desc: "Claim your Daily Rewards chest in the shop under Bundles.",
         img: "placeholder"
     },
     "daily-lair": {
@@ -67,6 +88,13 @@ var dailies = {
         url: "#",
         short: true,
         desc: "Collect a free rare crest from elder rift",
+        img: "placeholder"
+    },
+	"daily-lottery": {
+        task: "Shadow Lottery",
+        url: "#",
+        short: true,
+        desc: "Enter the Shadow Lottery for a Akeba's Signet. Available 12pm, 6pm and 9pm",
         img: "placeholder"
     },
     "daily-side-open": {
