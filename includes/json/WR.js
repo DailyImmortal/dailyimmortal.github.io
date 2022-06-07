@@ -1,20 +1,8 @@
 var weeklies = {
-    "vault": {
-        task: "Vault",
+    "challenge-rifts": {
+        task: "Challenge Rifts",
         url: "#",
-        desc: "Complete 4 x vault runs for max rewards",
-        img: "placeholder"
-    },
-    "hilt": {
-        task: "Hilt Trader",
-        url: "#",
-        desc: "Buy weekly items from Hilt Trader",
-        img: "placeholder"
-    },
-    "helliquary": {
-        task: "Helliquary",
-        url: "#",
-        desc: "Kill ALL of the Helliquary Bosses that you are able to at least twice per week. ",
+        desc: "Reach as high as you can on challenge rift for weekly rewards",
         img: "placeholder"
     },
     "codex-quest": {
@@ -29,10 +17,22 @@ var weeklies = {
         desc: "Run Elder Rifts to collect 200 ember",
         img: "placeholder"
     },
-    "challenge-rifts": {
-        task: "Challenge Rifts",
+    "helliquary": {
+        task: "Helliquary",
         url: "#",
-        desc: "Reach as high as you can on challenge rift for weekly rewards",
+        desc: "Kill ALL of the Helliquary Bosses that you are able to at least twice per week. ",
+        img: "placeholder"
+    },
+    "hilt": {
+        task: "Hilt Trader",
+        url: "#",
+        desc: "Buy weekly items from Hilt Trader",
+        img: "placeholder"
+    },
+    "vault": {
+        task: "Vault",
+        url: "#",
+        desc: "Complete vault runs until max rewards",
         img: "placeholder"
     },
 };
