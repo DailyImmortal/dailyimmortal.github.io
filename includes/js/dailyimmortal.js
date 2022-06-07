@@ -473,8 +473,8 @@ const checkReset = function (timeFrame, char) {
  * @param {String} timeFrame
  */
 const countDown = function (timeFrame) {
-    const resetHour = 10; // 10am
-    const resetday = 4; // Thursday
+    const resetHour = 3; // 3am
+    const resetday = 1; // Monday
     const isAfterDailyReset = new Date().getUTCHours() >= resetHour;
     const isAfterWeeklyReset = new Date().getUTCDay() == resetday;
 
