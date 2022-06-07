@@ -17,7 +17,7 @@ var dailies = {
         task: "Battleground",
         url: "#",
         short: true,
-        desc: "Battlegrounds are only open at 8am, 12pm, 6pm, and 10pm server time for 2 hours.",
+        desc: "Repeatable 3 times for rewards. Battlegrounds are only open at 8am, 12pm, 6pm, and 10pm server time for 2 hours.",
         img: "placeholder"
     },
 	"daily-bestiary": {
