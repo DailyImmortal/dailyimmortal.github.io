@@ -10,7 +10,7 @@ var dailies = {
         task: "Elder Rift",
         url: "#",
         short: true,
-        desc: "Collect Blessing rewards from elder rift x3",
+        desc: "Collect 3 Daedessa's Blessing rewards from elder rift",
         img: "placeholder"
     },
     "daily-hilt": {
@@ -34,15 +34,8 @@ var dailies = {
         desc: "Complete side quests from adventure seeker x 3",
         img: "placeholder"
     },
-    "daily-beastiary": {
-        task: "Bestiary",
-        url: "#",
-        short: true,
-        desc: "Complete bestiary x 3 pages",
-        img: "placeholder"
-    },
     "daily-sanctuary": {
-        task: "Iben's Sanctuary",
+        task: "Legacy of the Horadrim",
         url: "#",
         short: true,
         desc: "Run Iben's Sanctuary and open free chest",
@@ -52,11 +45,11 @@ var dailies = {
         task: "Battleground",
         url: "#",
         short: true,
-        desc: "Complete battlegrounds PvP x 3",
+        desc: "Battlegrounds are only open at 8am, 12pm, 6pm, and 10pm server time for 2 hours.",
         img: "placeholder"
     },
     "daily-faction": {
-        task: "Immortal/Shadow daily",
+        task: "Cycle of Strife Activities",
         url: "#",
         short: true,
         desc: "Complete Immortals / Shadows daily missions",
@@ -74,6 +67,13 @@ var dailies = {
         url: "#",
         short: true,
         desc: "Run Hidden Lairs (6 gems limit)",
+        img: "placeholder"
+    },
+	"daily-bestiary": {
+        task: "Bestiary",
+        url: "#",
+        short: true,
+        desc: "Complete Bestiary x 3 pages",
         img: "placeholder"
     },
     "daily-zone": {

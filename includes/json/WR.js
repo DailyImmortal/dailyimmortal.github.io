@@ -15,7 +15,7 @@ var weeklies = {
         task: "Helliquary",
         url: "#",
         desc: "Kill ALL of the Helliquary Bosses that you are able to at least twice per week. ",
-        img: "helliquary"
+        img: "placeholder"
     },
     "codex-quest": {
         task: "Codex Quests",
