@@ -3,36 +3,36 @@ var weeklies = {
         task: "Vault",
         url: "#",
         desc: "Complete 4 x vault runs for max rewards",
-        img: "todo"
+        img: "placeholder"
     },
     "hilt": {
         task: "Hilt Trader",
         url: "#",
         desc: "Buy weekly items from Hilt Trader",
-        img: "todo"
+        img: "placeholder"
     },
     "helliquary": {
         task: "Helliquary",
         url: "#",
-        desc: "Run Helliquary once",
-        img: "todo"
+        desc: "Kill ALL of the Helliquary Bosses that you are able to at least twice per week. ",
+        img: "helliquary"
     },
     "codex-quest": {
         task: "Codex Quests",
         url: "#",
         desc: "Complete battle pass codex quests",
-        img: "todo"
+        img: "placeholder"
     },
     "elder-rifts": {
         task: "Elder Rifts",
         url: "#",
         desc: "Run Elder Rifts to collect 200 ember",
-        img: "todo"
+        img: "placeholder"
     },
     "challenge-rifts": {
         task: "Challenge Rifts",
         url: "#",
         desc: "Reach as high as you can on challenge rift for weekly rewards",
-        img: "todo"
+        img: "placeholder"
     },
 };
