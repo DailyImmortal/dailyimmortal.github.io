@@ -28,11 +28,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
-    <script src="includes/json/DC.js?v=1"></script>
     <script src="includes/json/DR.js?v=1"></script>
-    <script src="includes/json/WC.js?v=1"></script>
     <script src="includes/json/WR.js?v=1"></script>
-
+    <script src="includes/json/MR.js?v=1"></script>
+	
     <script src="includes/js/dailyimmortal.js?v=37"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.10.11/interact.min.js"></script>
     <script src="includes/js/interact.js?v=2"></script>
@@ -72,6 +71,12 @@
                         <div class="nav-icon-bar" title="Weekly Reset">
                             <i class="fa-solid fa-calendar-week nav-icon" title="Weekly Reset"></i><b>Weekly: </b><span
                                 id="countdown-weeklies" class="countdown"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="nav-icon-bar" title="Monthly Reset">
+                            <i class="fa-solid fa-calendar-week nav-icon" title="Weekly Reset"></i><b>Monthly: </b><span
+                                id="countdown-monthlies" class="countdown"></span>
                         </div>
                     </li>
                 </ul>
@@ -158,6 +163,36 @@
                 <tbody></tbody>
             </table>
         </div>
+		
+		<div id="monthlies" class="table_container monthlies_table draggable" data-x="0" data-y="0">
+            <input type="checkbox" class="theme-switch" />
+            <table id="monthlies_table" class="activity_table table table-dark table-striped table-hover"
+                   data-timeframe="monthlies">
+                <thead>
+                <tr>
+                    <th>Monthlies</span></th>
+                    <td>
+                        <span class="text-nowrap">
+                            <button class="drag-handle expanding_button btn btn-secondary btn-sm active"
+                                    title="Click, hold and drag to move section">✥<span
+                                    class="expanding_text"> Move</span></button>
+                            <button id="monthlies_hide_button"
+                                    class="hide_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Hide section">▲<span class="expanding_text"> Hide</span></button>
+                            <button id="monthlies_unhide_button"
+                                    class="unhide_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button>
+                            <button id="monthlies_reset_button"
+                                    class="reset_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Completely reset checked items, hiding, position, order to default">↺<span
+                                    class="expanding_text"> Reset</span></button>
+                        </span>
+                    </td>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 
 
@@ -188,7 +223,7 @@
 <footer>
     <p>
         <a href="https://github.com/dailyimmortal/dailyimmortal.github.io" target="_blank" rel="noopener noreferrer"><img
-                src="/includes/img/github.png">Github</a>
+                src="includes/img/github.png">Github</a>
     </p>
     <p><a href="https://dailyimmortal.github.io/privacy.html">Privacy Policy</a></p>
 </footer>

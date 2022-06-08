@@ -1,10 +1,9 @@
 const storage = window.localStorage;
 
-const timeframesRoster = ['dailies', 'weeklies'];
+const timeframesRoster = ['dailies', 'weeklies', 'monthlies'];
 
 var currentProfile = 'default';
 var currentLayout = 'default';
-var characters = '';
 var dragRow; //global for currently dragged row
 
 /**
@@ -425,8 +424,8 @@ const hidableSection = function (timeFrame, char) {
  */
 const checkReset = function (timeFrame, char) {
     profilePrefix = char;
-    const resetHour = 10;
-    const resetday = 4;
+    const resetHour = 1;
+    const resetday = 1;
     let tableUpdateTime;
 
     if (profilePrefix != null) {
@@ -447,9 +446,11 @@ const checkReset = function (timeFrame, char) {
     nextdate.setUTCSeconds(0);
 
     //check lastupdated < last weekly reset
-    if (timeFrame == 'weeklies' || timeFrame == 'weeklychar') {
+    if (timeFrame == 'weeklies') {
         let weekmodifier = (7 - resetday + nextdate.getUTCDay()) % 7;
         nextdate.setUTCDate(nextdate.getUTCDate() - weekmodifier);
+    } else if (timeFrame == 'monthlies') {
+        nextdate.setUTCDate(1);
     }
 
     // Checking for the update for the daily timeframe is a little more complex because 
@@ -458,9 +459,11 @@ const checkReset = function (timeFrame, char) {
     const isAfterReset = new Date().getUTCHours() >= resetHour;
     const isAfterWeeklyReset = new Date().getUTCDay() >= resetday;
     if ((updateTime.getUTCHours() < resetHour || nextdate.getUTCHours() == resetHour) && updateTime.getTime() < nextdate.getTime() && isAfterReset) {
-        if ((timeFrame == 'weeklies' || timeFrame == 'weeklychar') && (updateTime.getUTCDay() < resetday || nextdate.getUTCDay() == resetday) && isAfterWeeklyReset) {
+        if ((timeFrame == 'weeklies') && (updateTime.getUTCDay() < resetday || nextdate.getUTCDay() == resetday) && isAfterWeeklyReset) {
             resetTable(timeFrame, true, profilePrefix);
-        } else if (timeFrame == 'dailies' || timeFrame == 'dailychar') {
+        } else if (timeFrame == 'dailies') {
+            resetTable(timeFrame, true, profilePrefix);
+        } else if (timeFrame == 'monthlies') {
             resetTable(timeFrame, true, profilePrefix);
         } else {
             return;
@@ -477,10 +480,17 @@ const countDown = function (timeFrame) {
     const resetday = 1; // Monday
     const isAfterDailyReset = new Date().getUTCHours() >= resetHour;
     const isAfterWeeklyReset = new Date().getUTCDay() == resetday;
+    const isAfterMonthlyReset = new Date().getUTCDay() == resetday;
 
     let nextdate = new Date();
 
-    if (timeFrame == 'weeklies') {
+	if (timeFrame == 'monthlies') {
+        nextdate.setUTCHours(resetHour);
+        nextdate.setUTCMinutes(0);
+        nextdate.setUTCSeconds(0);
+        nextdate.setUTCMonth(nextdate.getUTCMonth() + 1);
+        nextdate.setUTCDate(1);
+    } else if (timeFrame == 'weeklies') {
         nextdate.setUTCHours(resetHour);
         nextdate.setUTCMinutes(0);
         nextdate.setUTCSeconds(0);
@@ -489,7 +499,7 @@ const countDown = function (timeFrame) {
         if (isAfterWeeklyReset && isAfterDailyReset) {
             nextdate.setUTCDate(nextdate.getUTCDate() + 7);
         }
-    } else {
+    } else if (timeFrame == 'dailies') {
         nextdate.setUTCHours(resetHour);
         nextdate.setUTCMinutes(0);
         nextdate.setUTCSeconds(0);
@@ -524,102 +534,6 @@ const populateNavigation = function (index, character) {
     charNavigation += '<h6 class="dropdown-header nav-char">' + character + '</h6>';
 
     navigation.innerHTML += charNavigation;
-}
-
-const charactersFunction = function () {
-    let charactersStored = storage.getItem('characters');
-    let characterControl = document.getElementById('character-control');
-    let characterForm = characterControl.querySelector('form');
-    let charactersArray = [];
-
-    if (charactersStored !== null) {
-        charactersArray = charactersStored.split(',');
-
-        let characterBody = document.getElementById('characters_body')
-
-        //populate list of characters
-        for (let character of charactersArray) {
-            characterBody.innerHTML +=
-                '<div class="table_container_characters">' +
-                '<div id="' + character + '_dailychar" class="table_container ' + character + '_dailychar_table">' +
-                '<input type="checkbox" class="theme-switch" />' +
-                '<table id="' + character + '_dailychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="dailychar" data-character="' + character + '" data-x="0" data-y="0">' +
-                '<thead>' +
-                '<tr>' +
-                '<th>' + character + ' Daily</th>' +
-                '<td>' +
-                '<span class="text-nowrap">' +
-                '<button class="drag-handle expanding_button btn btn-secondary btn-sm active" title="Click, hold and drag to move section">✥<span class="expanding_text"> Move</span></button> ' +
-                '<button id="' + character + '_dailychar_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button> ' +
-                '<button id="' + character + '_dailychar_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button> ' +
-                '<button id="' + character + '_dailychar_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button> ' +
-                '<button id="character-delete" class="btn btn-danger btn-sm active expanding_button" data-character="' + character + '" title="Delete ' + character + '">⊘<span class="expanding_text"> Delete ' + character + '?</span></button>' +
-                '</td>' +
-                '</tr>' +
-                '</thead>' +
-                '<tbody></tbody>' +
-                '</table>' +
-                '</div>' +
-                '<div id="' + character + '_weeklychar" class="table_container ' + character + '_weeklychar_table">' +
-                '<input type="checkbox" class="theme-switch" />' +
-                '<table id="' + character + '_weeklychar_table" class="activity_table table table-dark table-striped table-hover draggable" data-timeframe="weeklychar" data-character="' + character + '" data-x="0" data-y="0">' +
-                '<thead>' +
-                '<tr>' +
-                '<th>' + character + ' Weekly</th>' +
-                '<td>' +
-                '<span class="text-nowrap">' +
-                '<button class="drag-handle expanding_button btn btn-secondary btn-sm active" title="Click, hold and drag to move section">✥<span class="expanding_text"> Move</span></button> ' +
-                '<button id="' + character + '_weeklychar_hide_button" class="hide_button expanding_button btn btn-secondary btn-sm active" title="Hide section">▲<span class="expanding_text"> Hide</span></button> ' +
-                '<button id="' + character + '_weeklychar_unhide_button" class="unhide_button expanding_button btn btn-secondary btn-sm active" title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button> ' +
-                '<button id="' + character + '_weeklychar_reset_button" class="reset_button expanding_button btn btn-secondary btn-sm active" title="Completely reset checked items, hiding and order to default">↺<span class="expanding_text"> Reset</span></button> ' +
-                '<button id="character-delete" class="btn btn-danger btn-sm active expanding_button" data-character="' + character + '" title="Delete ' + character + '">⊘<span class="expanding_text"> Delete ' + character + '?</span></button>' +
-                '</td>' +
-                '</tr>' +
-                '</thead>' +
-                '<tbody></tbody>' +
-                '</table>' +
-                '</div>' +
-                '</div>'
-        }
-    }
-
-    //Event listener for deleting character button
-    let characterBody = document.getElementById('characters_body');
-    let deleteButtons = characterBody.querySelectorAll('#character-delete');
-    for (let deleteButton of deleteButtons) {
-        deleteButton.addEventListener('click', function (e) {
-            e.preventDefault();
-            charactersArray = charactersArray.filter(e => e != this.dataset.character);
-            if (charactersArray.length == 0) {
-                storage.removeItem('characters');
-            } else {
-                storage.setItem('characters', charactersArray.join(','));
-            }
-
-            let prefix = this.dataset.character == 'default' ? '' : (this.dataset.character + '-');
-            
-            eventTracking("remove character", "characters", prefix);
-
-            window.location.reload();
-        });
-    }
-
-    //alpha profile names only
-
-
-    // Save data on submit
-    characterForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        let characterNameField = this.querySelector('input#characterName');
-        let characterErrorMsg = characterNameField.parentNode.querySelector('.invalid-feedback');
- eventTracking("add character", "characters", characterNameField.value);
-            charactersArray.push(characterNameField.value);
-            storage.setItem('characters', charactersArray.join(','));
-            window.location.reload();
-    });
-
-
 }
 
 const layouts = function () {
@@ -674,16 +588,6 @@ const resetPositions = function () {
             var item = keys[i];
             if (item.startsWith('pos_')) {
                 localStorage.removeItem(item);
-            }
-        }
-
-        // Tasks
-        let charactersStored = storage.getItem('characters');
-        if (charactersStored !== null) {
-            let characterArray = charactersStored.split(',');
-            for (const index in characterArray) {
-                character = characterArray[index];
-                
             }
         }
 
@@ -744,21 +648,9 @@ const themeSwitcher = function(state) {
 
 
 window.onload = function () {
-    charactersFunction();
     layouts();
     positions();
     resetPositions();
-
-    let charactersStored = storage.getItem('characters');
-    if (charactersStored !== null) {
-        let characterArray = charactersStored.split(',');
-
-        for (const index in characterArray) {
-            character = characterArray[index];
-            
-            populateNavigation(index, character);
-        }
-    }
 
     for (const timeFrame of timeframesRoster) {
         populateTable(timeFrame, null);

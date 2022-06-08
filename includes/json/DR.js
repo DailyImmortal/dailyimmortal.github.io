@@ -70,10 +70,10 @@ var dailies = {
         img: "placeholder"
     },
     "daily-hilt": {
-        task: "Hilt Trader",
+        task: "Hilts Trader",
         url: "#",
         short: true,
-        desc: "Buy items from Hilt Trader - Changes 2 x daily",
+        desc: "Buy items from Hilts Trader - Changes 2 x daily",
         img: "placeholder"
     },
     "daily-sanctuary": {

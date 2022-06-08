@@ -30,9 +30,9 @@ var weeklies = {
         img: "placeholder"
     },
     "hilt": {
-        task: "Hilt Trader",
+        task: "Hilts Trader",
         url: "#",
-        desc: "Buy weekly items from Hilt Trader",
+        desc: "Buy weekly items from Hilts Trader",
         img: "placeholder"
     },
 	"assembly": {
