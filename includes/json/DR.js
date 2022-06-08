@@ -6,13 +6,6 @@ var dailies = {
         desc: "Complete side quests from adventure seeker",
         img: "placeholder"
     },
-    "daily-faction": {
-        task: "Cycle of Strife Activities",
-        url: "#",
-        short: true,
-        desc: "Complete Immortals / Shadows daily missions",
-        img: "placeholder"
-    },
     "daily-battlegrounds": {
         task: "Battleground",
         url: "#",
@@ -32,6 +25,13 @@ var dailies = {
         url: "#",
         short: true,
         desc: "Complete 8 Bounties (can stack up to 24 if not all are completed in a day)",
+        img: "placeholder"
+    },
+    "daily-faction": {
+        task: "Contracts",
+        url: "#",
+        short: true,
+        desc: "Complete your daily Shadow Contract (can stack up to 5)",
         img: "placeholder"
     },
     "daily-challenge-reward": {

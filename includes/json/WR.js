@@ -11,6 +11,12 @@ var weeklies = {
         desc: "Complete battle pass codex quests",
         img: "placeholder"
     },
+    "contract": {
+        task: "Contracts",
+        url: "#",
+        desc: "Complete 3 contracts for weekly rewards",
+        img: "placeholder"
+    },
     "elder-rifts": {
         task: "Elder Rifts",
         url: "#",
@@ -27,6 +33,12 @@ var weeklies = {
         task: "Hilt Trader",
         url: "#",
         desc: "Buy weekly items from Hilt Trader",
+        img: "placeholder"
+    },
+	"assembly": {
+        task: "The Assembly",
+        url: "#",
+        desc: "Collect all 4 blessings. The Assembly occurs every Wednesday and Saturday from 2pm to 10pm server time.",
         img: "placeholder"
     },
     "vault": {
