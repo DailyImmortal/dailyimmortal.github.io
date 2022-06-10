@@ -93,8 +93,8 @@ const populateTable = function (timeFrame, char) {
 			let dust = data[taskSlug].desc.replace("{dust}", "<img class='icon' src='../includes/img/activities/dust.webp' alt=Dust/><b style="+"color:#ff0;"+">Enchanted Dust</b>");
             let gems = dust.replace("{gems}", "<img class='icon' src='../includes/img/activities/gem.webp' alt=Gems/><b style="+"color:#2bd999;"+">Normal Gems</b>");
             let ember = gems.replace("{ember}", "<img class='icon' src='../includes/img/activities/ember.webp' alt=Ember/><b style="+"color:#5aabef;"+">Fading Ember</b>");
-			let crest1 = ember.replace("{rare_crest}", "<img class='icon' src='../includes/img/activities/ember.webp' alt=RareCrest/><b style="+"color:#ff0;"+">Rare Crest</b>");
-			let crest2 = crest1.replace("{leg_crest}", "<img class='icon' src='../includes/img/activities/ember.webp' alt=LegendaryCrest/><b style="+"color:#bf642f;"+">Legendary Crest</b>");
+			let crest1 = ember.replace("{rare_crest}", "<img class='icon' src='../includes/img/activities/rare_crest.webp' alt=RareCrest/><b style="+"color:#ff0;"+">Rare Crest</b>");
+			let crest2 = crest1.replace("{leg_crest}", "<img class='icon' src='../includes/img/activities/leg_crest.webp' alt=LegendaryCrest/><b style="+"color:#bf642f;"+">Legendary Crest</b>");
 
 			newRowColor.innerHTML = crest2;
         }
