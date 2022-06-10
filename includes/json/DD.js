@@ -3,14 +3,14 @@ var dailydrops = {
         task: "4 Player Dungeons",
         url: "#",
         short: true,
-        desc: "After the first 5 gems, you'll get 1 gem per hour",
+        desc: "After the first 5 {gems}, you'll get 1 gem per hour",
         img: "placeholder"
     },
     "daily-lair": {
         task: "Hidden Lair",
         url: "#",
         short: true,
-        desc: "Only 6 gems per day. Can be done in 1-2 Lairs",
+        desc: "Only 6 {gems} per day. Can be done in 1-2 Lairs",
         img: "placeholder"
     },
     "daily-leg": {

@@ -20,7 +20,7 @@ var weeklies = {
     "elder-rifts": {
         task: "Elder Rifts",
         url: "#",
-        desc: "Run Elder Rifts to collect 320 ember",
+        desc: "Run Elder Rifts to collect 320 {ember}",
         img: "placeholder"
     },
     "helliquary": {

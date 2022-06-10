@@ -90,7 +90,11 @@ const populateTable = function (timeFrame, char) {
         }
 
         if (!!data[taskSlug].desc) {
-            newRowColor.innerHTML =  data[taskSlug].desc.replace("{dust}", "<img class='icon' src='../includes/img/activities/dust.webp' alt=Dust/><b style="+"color:#ff0;"+">Enchanted Dust</b>");
+			let dust = data[taskSlug].desc.replace("{dust}", "<img class='icon' src='../includes/img/activities/dust.webp' alt=Dust/><b style="+"color:#ff0;"+">Enchanted Dust</b>");
+            let gems = dust.replace("{gems}", "<img class='icon' src='../includes/img/activities/gem.webp' alt=Gems/><b style="+"color:#2bd999;"+">Normal Gems</b>");
+            let ember = gems.replace("{ember}", "<img class='icon' src='../includes/img/activities/ember.webp' alt=Ember/><b style="+"color:#bf642f;"+">Fading Ember</b>");
+
+			newRowColor.innerHTML = ember;
         }
 
         tbody.appendChild(newRow);
