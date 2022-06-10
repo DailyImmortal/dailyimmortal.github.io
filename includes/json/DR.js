@@ -67,28 +67,28 @@ var dailies = {
         url: "#",
         short: true,
         desc: "Buy items from Hilts Trader - Changes 2 x daily",
-        img: "placeholder"
+        img: "hilts"
     },
     "daily-sanctuary": {
         task: "Legacy of the Horadrim",
         url: "#",
         short: true,
         desc: "Run Iben's Sanctuary and open chests",
-        img: "placeholder"
+        img: "key"
     },
     "daily-crest": {
         task: "Rare Crest",
         url: "#",
         short: true,
-        desc: "Collect a free rare crest from elder rift",
-        img: "placeholder"
+        desc: "Collect a free {rare_crest} from elder rift",
+        img: "rare_crest"
     },
 	"daily-lottery": {
         task: "Shadow Lottery",
         url: "#",
         short: true,
-        desc: "Enter the Shadow Lottery for a Akeba's Signet. Available 12pm, 6pm and 9pm",
-        img: "placeholder"
+        desc: "Enter the Shadow Lottery. Available 12pm, 6pm and 9pm",
+        img: "signet"
     },
     "daily-zone": {
         task: "Zone Event",
