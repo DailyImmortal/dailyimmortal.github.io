@@ -1,6 +1,6 @@
 const storage = window.localStorage;
 
-const timeframesRoster = ['dailies', 'weeklies', 'monthlies', 'dailydrops'];
+const timeframesRoster = ['dailies', 'weeklies', 'monthlies'];
 
 var currentProfile = 'default';
 var currentLayout = 'default';
@@ -466,7 +466,7 @@ const checkReset = function (timeFrame, char) {
     if ((updateTime.getUTCHours() < resetHour || nextdate.getUTCHours() == resetHour) && updateTime.getTime() < nextdate.getTime() && isAfterReset) {
         if ((timeFrame == 'weeklies') && (updateTime.getUTCDay() < resetday || nextdate.getUTCDay() == resetday) && isAfterWeeklyReset) {
             resetTable(timeFrame, true, profilePrefix);
-        } else if (timeFrame == 'dailies') {
+        } else if (timeFrame == 'dailies' ) {
             resetTable(timeFrame, true, profilePrefix);
         } else if (timeFrame == 'monthlies') {
             resetTable(timeFrame, true, profilePrefix);
