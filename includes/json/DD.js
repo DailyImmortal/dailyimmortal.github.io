@@ -52,7 +52,7 @@ var dailydrops = {
         task: "Library of Zoltun Kulle",
         url: "#",
         short: true,
-        desc: "Up to 5 Enchanted Dust {dust} for reach unique dungeon. Repeat dungeons don't drop any.",
+        desc: "Up to 5 Enchanted Dust {dust} for each unique dungeon. Repeat dungeons don't drop any.",
         img: "placeholder"
     },
 };
