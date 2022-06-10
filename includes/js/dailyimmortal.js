@@ -1,6 +1,6 @@
 const storage = window.localStorage;
 
-const timeframesRoster = ['dailies', 'weeklies', 'monthlies'];
+const timeframesRoster = ['dailies', 'weeklies', 'monthlies', 'dailydrops'];
 
 var currentProfile = 'default';
 var currentLayout = 'default';
@@ -466,7 +466,7 @@ const checkReset = function (timeFrame, char) {
     if ((updateTime.getUTCHours() < resetHour || nextdate.getUTCHours() == resetHour) && updateTime.getTime() < nextdate.getTime() && isAfterReset) {
         if ((timeFrame == 'weeklies') && (updateTime.getUTCDay() < resetday || nextdate.getUTCDay() == resetday) && isAfterWeeklyReset) {
             resetTable(timeFrame, true, profilePrefix);
-        } else if (timeFrame == 'dailies' ) {
+        } else if (timeFrame == 'dailies' || timeFrame == 'dailydrops' ) {
             resetTable(timeFrame, true, profilePrefix);
         } else if (timeFrame == 'monthlies') {
             resetTable(timeFrame, true, profilePrefix);
@@ -503,7 +503,7 @@ const countDown = function (timeFrame) {
         if (isAfterWeeklyReset && isAfterDailyReset) {
             nextdate.setUTCDate(nextdate.getUTCDate() + 7);
         }
-    } else if (timeFrame == 'dailies') {
+    } else if (timeFrame == 'dailies' || timeFrame == 'dailydrops') {
         nextdate.setUTCHours(resetHour);
         nextdate.setUTCMinutes(0);
         nextdate.setUTCSeconds(0);
@@ -521,6 +521,10 @@ const countDown = function (timeFrame) {
         Math.floor(remainingtime % 3600 / 60), //m
         Math.floor(remainingtime % 60) //s
     ];
+	
+	if (timeFrame == 'dailydrops'){
+		return;
+	}
 
     if (timeFrame == 'weeklies') {
         document.getElementById('countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '0d ') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
