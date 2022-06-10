@@ -90,6 +90,12 @@ var dailies = {
         desc: "Enter the Shadow Lottery. Available 12pm, 6pm and 9pm",
         img: "signet"
     },
+	"assembly": {
+        task: "The Assembly",
+        url: "#",
+        desc: "Collect all 4 blessings. The Assembly happens daily Monday until Saturday from 2pm to 10pm server time.",
+        img: "assembly"
+    },
     "daily-zone": {
         task: "Zone Event",
         url: "#",

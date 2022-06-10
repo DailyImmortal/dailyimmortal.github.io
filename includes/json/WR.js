@@ -35,12 +35,6 @@ var weeklies = {
         desc: "Buy weekly items from Hilts Trader",
         img: "hilts"
     },
-	"assembly": {
-        task: "The Assembly",
-        url: "#",
-        desc: "Collect all 4 blessings. The Assembly occurs every Wednesday and Saturday from 2pm to 10pm server time.",
-        img: "assembly"
-    },
     "vault": {
         task: "Vault",
         url: "#",
