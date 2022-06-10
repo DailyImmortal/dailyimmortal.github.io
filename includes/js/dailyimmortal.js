@@ -416,6 +416,11 @@ const hidableSection = function (timeFrame, char) {
     });
 };
 
+const getTimezone = function(){
+	const timezone = document.getElementById('timezone');
+	return parseInt(timezone.value);
+}
+
 /**
  * Check if last updated timestamp for a timeframe is less than
  * the last reset for that timeframe if so reset the category
@@ -424,7 +429,7 @@ const hidableSection = function (timeFrame, char) {
  */
 const checkReset = function (timeFrame, char) {
     profilePrefix = char;
-    const resetHour = 1;
+    const resetHour = getTimezone();
     const resetday = 1;
     let tableUpdateTime;
 
@@ -476,11 +481,10 @@ const checkReset = function (timeFrame, char) {
  * @param {String} timeFrame
  */
 const countDown = function (timeFrame) {
-    const resetHour = 1; // 3am
+    const resetHour = getTimezone();
     const resetday = 1; // Monday
     const isAfterDailyReset = new Date().getUTCHours() >= resetHour;
     const isAfterWeeklyReset = new Date().getUTCDay() == resetday;
-    const isAfterMonthlyReset = new Date().getUTCDay() == resetday;
 
     let nextdate = new Date();
 
@@ -646,11 +650,21 @@ const themeSwitcher = function(state) {
     }
 }
 
-
 window.onload = function () {
     layouts();
     positions();
     resetPositions();
+
+	const timezone = document.getElementById('timezone');
+	 if (localStorage.getItem('timezone') !== null) {
+        timezone.value = localStorage.getItem('timezone');
+	 } else {
+		 localStorage.setItem('timezone', 10);
+	 }
+	
+	timezone.addEventListener('change', function (e) {
+		localStorage.setItem('timezone', timezone.value);
+    });
 
     for (const timeFrame of timeframesRoster) {
         populateTable(timeFrame, null);
