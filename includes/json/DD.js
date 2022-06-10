@@ -4,14 +4,14 @@ var dailydrops = {
         url: "#",
         short: true,
         desc: "After the first 5 {gems}, you'll get 1 gem per hour",
-        img: "placeholder"
+        img: "gem"
     },
     "daily-lair": {
         task: "Hidden Lair",
         url: "#",
         short: true,
         desc: "Only 6 {gems} per day. Can be done in 1-2 Lairs",
-        img: "placeholder"
+        img: "gem"
     },
     "daily-leg": {
         task: "Legendary / Set",
@@ -25,34 +25,34 @@ var dailydrops = {
         url: "#",
         short: true,
         desc: "Up to 5 {dust} for each reward. No more drops after the 5th",
-        img: "placeholder"
+        img: "dust"
     },
     "daily-purple": {
         task: "Purple Boss Quest",
         url: "#",
         short: true,
         desc: "Up to 5 {dust} for each reward. No more drops after the 5th",
-        img: "placeholder"
+        img: "dust"
     },
     "daily-popup": {
         task: "Kill x Monsters popup Quest",
         url: "#",
         short: true,
         desc: "Up to 5 {dust} for each reward. No more drops after the 5th",
-        img: "placeholder"
+        img: "dust"
     },
     "daily-chest": {
         task: "Cursed Chests",
         url: "#",
         short: true,
         desc: "Up to 5 {dust} for each reward. No more drops after the 5th",
-        img: "placeholder"
+        img: "dust"
     },
     "daily-zoltun": {
         task: "Library of Zoltun Kulle",
         url: "#",
         short: true,
         desc: "Up to 5 {dust} for each unique dungeon. Repeat dungeons don't drop any.",
-        img: "placeholder"
+        img: "dust"
     },
 };
