@@ -62,13 +62,6 @@ var dailies = {
         desc: "Claim your Daily Rewards chest in the shop under Bundles.",
         img: "placeholder"
     },
-    "daily-lair": {
-        task: "Hidden Lair",
-        url: "#",
-        short: true,
-        desc: "Run Hidden Lairs (6 gems limit)",
-        img: "placeholder"
-    },
     "daily-hilt": {
         task: "Hilts Trader",
         url: "#",
@@ -95,13 +88,6 @@ var dailies = {
         url: "#",
         short: true,
         desc: "Enter the Shadow Lottery for a Akeba's Signet. Available 12pm, 6pm and 9pm",
-        img: "placeholder"
-    },
-    "daily-side-open": {
-        task: "Side Quests",
-        url: "#",
-        short: true,
-        desc: "Complete side quests in the world until no more enchanted dust drops (x5 limit)",
         img: "placeholder"
     },
     "daily-zone": {

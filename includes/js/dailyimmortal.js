@@ -1,6 +1,6 @@
 const storage = window.localStorage;
 
-const timeframesRoster = ['dailies', 'weeklies', 'monthlies'];
+const timeframesRoster = ['dailies', 'weeklies', 'monthlies', 'dailydrops'];
 
 var currentProfile = 'default';
 var currentLayout = 'default';
@@ -90,7 +90,7 @@ const populateTable = function (timeFrame, char) {
         }
 
         if (!!data[taskSlug].desc) {
-            newRowColor.innerHTML = data[taskSlug].desc;
+            newRowColor.innerHTML =  data[taskSlug].desc.replace("{dust}", "<img class='icon' src='../includes/img/activities/dust.webp' alt=Dust/>");
         }
 
         tbody.appendChild(newRow);
