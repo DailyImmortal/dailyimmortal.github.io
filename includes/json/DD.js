@@ -24,35 +24,35 @@ var dailydrops = {
         task: "Blue Side Quests",
         url: "#",
         short: true,
-        desc: "Up to 5 Enchanted Dust {dust} for each reward. No more drops after the 5th",
+        desc: "Up to 5 {dust} for each reward. No more drops after the 5th",
         img: "placeholder"
     },
     "daily-purple": {
         task: "Purple Boss Quest",
         url: "#",
         short: true,
-        desc: "Up to 5 Enchanted Dust {dust} for each reward. No more drops after the 5th",
+        desc: "Up to 5 {dust} for each reward. No more drops after the 5th",
         img: "placeholder"
     },
     "daily-popup": {
         task: "Kill x Monsters popup Quest",
         url: "#",
         short: true,
-        desc: "Up to 5 Enchanted Dust {dust} for each reward. No more drops after the 5th",
+        desc: "Up to 5 {dust} for each reward. No more drops after the 5th",
         img: "placeholder"
     },
     "daily-chest": {
         task: "Cursed Chests",
         url: "#",
         short: true,
-        desc: "Up to 5 Enchanted Dust {dust} for each reward. No more drops after the 5th",
+        desc: "Up to 5 {dust} for each reward. No more drops after the 5th",
         img: "placeholder"
     },
     "daily-zoltun": {
         task: "Library of Zoltun Kulle",
         url: "#",
         short: true,
-        desc: "Up to 5 Enchanted Dust {dust} for each unique dungeon. Repeat dungeons don't drop any.",
+        desc: "Up to 5 {dust} for each unique dungeon. Repeat dungeons don't drop any.",
         img: "placeholder"
     },
 };

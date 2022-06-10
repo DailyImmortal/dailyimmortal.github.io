@@ -90,7 +90,7 @@ const populateTable = function (timeFrame, char) {
         }
 
         if (!!data[taskSlug].desc) {
-            newRowColor.innerHTML =  data[taskSlug].desc.replace("{dust}", "<img class='icon' src='../includes/img/activities/dust.webp' alt=Dust/>");
+            newRowColor.innerHTML =  data[taskSlug].desc.replace("{dust}", "<img class='icon' src='../includes/img/activities/dust.webp' alt=Dust/><b style="+"color:#ff0;"+">Enchanted Dust</b>");
         }
 
         tbody.appendChild(newRow);
