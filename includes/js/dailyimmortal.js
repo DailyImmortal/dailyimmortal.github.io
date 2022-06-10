@@ -611,26 +611,6 @@ const resetPositions = function () {
 }
 
 /**
- * Make bootstrap 5 dropdown menus collapse after link is clicked
- * old method of adding `data-toggle="collapse" data-target=".navbar-collapse.show"` to the <li>s was preventing navigation by the same element
- */
-const dropdownMenuHelper = function () {
-    const navLinks = document.querySelectorAll('.nav-item:not(.dropdown), .dropdown-item');
-    const menuToggle = document.getElementById('navbarSupportedContent');
-    const bsCollapse = new bootstrap.Collapse(menuToggle, {
-        toggle: false
-    });
-
-    navLinks.forEach(function (l) {
-        l.addEventListener('click', function () {
-            if (menuToggle.classList.contains('show')) {
-                bsCollapse.toggle();
-            }
-        });
-    });
-};
-
-/**
  * Track events with google analytics
  * @param {string} action of the event
  * @param {string} category of the event
@@ -675,7 +655,6 @@ window.onload = function () {
         countDown(timeFrame);
     }
 
-    dropdownMenuHelper();
     tableEventListeners();
 
     const themeSwitch = document.querySelector('.main-switch');
