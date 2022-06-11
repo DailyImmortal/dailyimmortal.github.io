@@ -421,7 +421,6 @@ div.table_container[data-hide="hide"] .unhide_button {
 }
 
 .compact .activity_table td.activity_name {
-    min-height: 48px;
     display: flex;
 }
 
@@ -562,38 +561,19 @@ footer a img {
     margin-right: 5px;
 }
 
-.checkbox {
+input[type=checkbox]
+{
     display:inline-block;
     height: 24px;
     width: 24px;
     border-radius: 0px;
-    border: 1px solid #475155
+    margin-right: 6px;
+    border: 1px solid #475155;
+    background: transparent;
 }
 
-.checkboxed {
-    display:inline-block;
-    height: 24px;
-    width: 24px;
-    border-radius: 0px;
-    border: 1px solid #475155
+input[type=checkbox]:checked
+{
+    border: 1px solid #475155;
+    background-color: #0E9700;
 }
-
-.checkboxed:after {
-    /* Vector */
-    position: static;
-    width: 13.5px;
-    height: 9px;
-    left: 5.25px;
-    top: 7.5px;
-
-    border: 3px solid #6FC700;
-
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 0px;
-
-}
-
-

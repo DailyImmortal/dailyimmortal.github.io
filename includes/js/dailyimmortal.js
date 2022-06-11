@@ -67,14 +67,8 @@ const populateTable = function (timeFrame, char) {
         let newRow = rowClone.querySelector('tr');
         let newRowAnchor = rowClone.querySelector('td.activity_name a');
         let newRowColor = rowClone.querySelector('td.activity_color .activity_desc');
-        let taskState;
-
-        if (profilePrefix != null) {
-            taskState = storage.getItem(profilePrefix + '-' + taskSlug) ?? 'false';
-        } else {
-            taskState = storage.getItem(taskSlug) ?? 'false';
-        }
-
+        let newRowActColor = rowClone.querySelector('td.activity_color');
+        
         newRow.dataset.task = taskSlug;
 
         if (!!data[taskSlug].url) {
@@ -99,10 +93,50 @@ const populateTable = function (timeFrame, char) {
 			newRowColor.innerHTML = crest2;
         }
 
+        let compactLayout = document.body.classList.contains('compact');
+        
+        let checkState = true;
+        if (!!data[taskSlug].boxcount) {
+            if (!compactLayout) {
+                newRowActColor.innerHTML += "<br>";
+            }
+            for (let i = 0; i < data[taskSlug].boxcount; i++) {
+
+                if (compactLayout) {
+                    if (i == 0) {
+                        newRowActColor.innerHTML += "<input class=\"form-check-input\" type=\"checkbox\" value=\"\" name=\"" + i + "\" id=\"checkbox_" + data[taskSlug].task.replaceAll(" ", "") + "\">"
+                    }
+
+                    if (storage.getItem("checkbox_"+data[taskSlug].task.replaceAll(" ", "")+i)===null) {
+                        storage.setItem("checkbox_"+data[taskSlug].task.replaceAll(" ", "")+i, false);
+                    }
+
+                    checkState = false;
+                }
+                else {
+                    newRowActColor.innerHTML += "<input class=\"form-check-input\" type=\"checkbox\" value=\"\" name=\"" + i + "\" id=\"checkbox_" + data[taskSlug].task.replaceAll(" ", "") + "\">"
+                   
+                    if (storage.getItem("checkbox_"+data[taskSlug].task.replaceAll(" ", "")+i)===null) {
+                        storage.setItem("checkbox_"+data[taskSlug].task.replaceAll(" ", "")+i, false);
+                    }
+
+                    if(storage.getItem("checkbox_"+data[taskSlug].task.replaceAll(" ", "")+i) === 'false'){
+                        checkState = false;
+                    }
+                }
+            }
+        }
+        
         tbody.appendChild(newRow);
-        newRow.dataset.completed = taskState;
+        newRow.dataset.completed = checkState;
     }
 
+    //restore checkstates
+    let checkBoxes = document.querySelectorAll('input.form-check-input');
+    for (let box of checkBoxes) {
+        box.checked = (storage.getItem(box.id + box.name) === 'true') ? true : false;
+    }
+    
     if (['asc', 'desc', 'alpha'].includes(customOrder)) {
         table.dataset.sort = customOrder;
         let tableRows = Array.from(tbody.querySelectorAll('tr'));
@@ -135,37 +169,42 @@ const populateTable = function (timeFrame, char) {
 const tableEventListeners = function () {
     let rowsColor = document.querySelectorAll('td.activity_color');
     let rowsHide = document.querySelectorAll('td.activity_name button.hide-button');
-
-    for (let colorCell of rowsColor) {
-        colorCell.addEventListener('click', function () {
+    let checkBoxes = document.querySelectorAll('input.form-check-input');
+    let compactLayout = document.body.classList.contains('compact');
+    
+    for (let box of checkBoxes) {
+        box.addEventListener('click', function () {
             let thisTimeframe = this.closest('table').dataset.timeframe;
             let thisCharacter = this.closest('table').dataset.character;
-            let thisRow = this.closest('tr');
-            let taskSlug = thisRow.dataset.task;
-            let newState = (thisRow.dataset.completed === 'true') ? 'false' : 'true'
-            thisRow.dataset.completed = newState;
-            if (newState === 'true') {
-                if (thisCharacter != null) {
-                    storage.setItem(thisCharacter + '-' + taskSlug, newState);
-                } else {
-                    storage.setItem(taskSlug, newState);
-                }
-
-            } else {
-                if (thisCharacter != null) {
-                    storage.removeItem(thisCharacter + '-' + taskSlug);
-                } else {
-                    storage.removeItem(taskSlug);
+            
+            //check if entire group is checked
+            let checkBoxGroup = document.querySelectorAll("[id^=" + box.id + "]");
+            
+            let checked = true;
+            for (let group of checkBoxGroup) {
+                if (!group.checked){
+                    checked = false;
                 }
             }
+            
+            //check task
+            let thisRow = this.closest('tr');
+            if (!compactLayout) {
+                thisRow.dataset.completed = checked;
+            }
+            
+            //save state
+            storage.setItem(box.id + box.name, box.checked);
+            
             if (thisCharacter != null) {
                 storage.setItem(thisCharacter + '-' + thisTimeframe + '-updated', new Date().getTime());
             } else {
                 storage.setItem(thisTimeframe + '-updated', new Date().getTime());
             }
-            eventTracking("click", "slugs", thisCharacter + '-' + thisTimeframe);
         });
-
+    }
+    
+    for (let colorCell of rowsColor) {
         let descriptionAnchors = colorCell.querySelectorAll('a');
         for (let anchor of descriptionAnchors) {
             anchor.addEventListener('click', function (e) {
@@ -225,8 +264,7 @@ const draggableTable = function (timeFrame, char) {
             } else {
                 rowArray = Array.from(document.querySelectorAll('#' + timeFrame + '_table tbody tr'));
             }
-
-
+            
             let dragOverRow = e.target.closest('tr');
 
             if (rowArray.indexOf(dragRow) < rowArray.indexOf(dragOverRow)) {
@@ -289,31 +327,11 @@ const draggableTable = function (timeFrame, char) {
  */
 const resetTable = function (timeFrame, html, char) {
     profilePrefix = char;
-    let tableRows;
-    if (profilePrefix != null) {
-        tableRows = document.querySelectorAll('#' + profilePrefix + '_' + timeFrame + '_table tbody tr');
-    } else {
-        tableRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
-    }
-
+    let tableRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr input');
+    
     for (let rowTarget of tableRows) {
-        let itemState;
-        if (profilePrefix != null) {
-            itemState = storage.getItem(profilePrefix + '-' + rowTarget.dataset.task) ?? 'false';
-        } else {
-            itemState = storage.getItem(rowTarget.dataset.task) ?? 'false';
-        }
-
-        if (itemState != 'hide') {
-            if (html) {
-                rowTarget.dataset.completed = false;
-            }
-            if (profilePrefix != null) {
-                storage.removeItem(profilePrefix + '-' + rowTarget.dataset.task);
-            } else {
-                storage.removeItem(rowTarget.dataset.task);
-            }
-        }
+        rowTarget.checked =false;
+        storage.setItem(rowTarget.id + rowTarget.name, false);
     }
 
     if (profilePrefix != null) {
@@ -321,7 +339,6 @@ const resetTable = function (timeFrame, html, char) {
     } else {
         storage.removeItem(timeFrame + '-updated');
     }
-
 };
 
 /**
@@ -342,23 +359,7 @@ const resettableSection = function (timeFrame, char) {
     resetButton.addEventListener('click', function () {
         let thisCharacter = this.closest('table').dataset.character;
         resetTable(timeFrame, false, thisCharacter);
-
-        for (let taskSlug in data) {
-            let itemState;
-            if (profilePrefix != null) {
-                itemState = storage.getItem(profilePrefix + '-' + taskSlug) ?? 'false';
-            } else {
-                itemState = storage.getItem(taskSlug) ?? 'false';
-            }
-
-            if (itemState == 'hide') {
-                if (profilePrefix != null) {
-                    storage.removeItem(profilePrefix + '-' + taskSlug);
-                } else {
-                    storage.removeItem(taskSlug);
-                }
-            }
-        }
+    
         if (profilePrefix != null) {
             eventTracking("reset", "layout", profilePrefix + '-' + timeFrame + '-order');
             storage.removeItem(profilePrefix + '-' + timeFrame + '-order');
@@ -529,13 +530,17 @@ const countDown = function (timeFrame) {
     ];
 	
 	if (timeFrame == 'dailydrops'){
-		return;
-	}
+        document.getElementById('th-countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
+    }
 
-    if (timeFrame == 'weeklies') {
+    if (timeFrame == 'weeklies' || timeFrame == 'monthlies') {
         document.getElementById('countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '0d ') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
-    } else {
+        document.getElementById('th-countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '0d ') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
+    } 
+    
+    if (timeFrame == 'dailies') {
         document.getElementById('countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
+        document.getElementById('th-countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
     }
 };
 
@@ -574,6 +579,8 @@ const layouts = function () {
             document.body.classList.remove('compact');
             layoutButton.innerHTML = '⊟<span class="expanding_text">&nbsp;Compact Mode</span>';
         }
+
+        window.location.reload();
     });
 };
 
@@ -605,13 +612,11 @@ const resetPositions = function () {
             }
         }
 
-        for (const timeFrame of timeframesRoster) {            
-            tableRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
+        for (const timeFrame of timeframesRoster) {
+            tableRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr input');
             for (let rowTarget of tableRows) {
-                itemState = storage.getItem(rowTarget.dataset.task)
-                if (itemState != 'hide') {
-                    storage.removeItem(rowTarget.dataset.task);
-                }
+                rowTarget.checked =false;
+                storage.setItem(rowTarget.id + rowTarget.name, false);
             }
             storage.removeItem(timeFrame + '-updated');
         }
@@ -668,7 +673,7 @@ window.onload = function () {
     tableEventListeners();
 
     const themeSwitch = document.querySelector('.main-switch');
-    console.log(themeSwitch);
+
     if (localStorage.getItem('switchedTheme') !== null) {
         themeSwitch.checked = localStorage.getItem('switchedTheme') === 'true';
         themeSwitcher(true);
