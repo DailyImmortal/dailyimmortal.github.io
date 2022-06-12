@@ -521,6 +521,12 @@ const countDown = function (timeFrame) {
                 day = 2;//OC / Asia
             }
             nextdate.setUTCDate(nextdate.getUTCDate() + day);
+            
+            let now = new Date();
+            let timeCheck = (nextdate.getTime() - now.getTime()) / 1000;
+            if (Math.floor(timeCheck / 86400) > 0){
+                nextdate.setUTCDate(nextdate.getUTCDate() - 1);
+            }
         }
     }
 
