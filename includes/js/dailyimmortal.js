@@ -514,14 +514,18 @@ const countDown = function (timeFrame) {
         nextdate.setUTCHours(resetHour);
         nextdate.setUTCMinutes(0);
         nextdate.setUTCSeconds(0);
+        
         if (isAfterDailyReset) {
-            nextdate.setUTCDate(nextdate.getUTCDate() + 1);
+            let day = 1;
+            if (resetHour < 0){
+                day = 2;//OC / Asia
+            }
+            nextdate.setUTCDate(nextdate.getUTCDate() + day);
         }
     }
 
     let nowtime = new Date();
     let remainingtime = (nextdate.getTime() - nowtime.getTime()) / 1000;
-
     let timeparts = [
         Math.floor(remainingtime / 86400), //d
         Math.floor(remainingtime % 86400 / 3600), //h
