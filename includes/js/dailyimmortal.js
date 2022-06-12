@@ -439,14 +439,12 @@ const updateTimeContent = function(){
         let splittedId = countdownElement.dataset.time.split("-");
 
         if (countdownElement.dataset.day !== "undefined"){
-
             let openDays = countdownElement.dataset.day.split("-");
-
             var currentDay = serverTime.getDay();
             if (!openDays.includes(String(currentDay))) {
-                //exit if not open on current day
+                //skip if not open on current day
                 countdownElement.textContent = "Closed for today" //todo: set actual time
-                return;
+                continue;
             }
         }
         
