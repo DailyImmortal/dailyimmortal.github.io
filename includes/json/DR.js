@@ -9,10 +9,11 @@ var dailies = {
     },
     "daily-battlegrounds": {
         task: "Battleground",
-        time: 8,
+        time: "8-12-18-22",
+        duration: 2,
         url: "#",
         short: true,
-        desc: "Repeatable 3 times for rewards. Battlegrounds are only open at 8am, 12pm, 6pm, and 10pm server time for 2 hours.",
+        desc: "Repeatable 3 times for rewards.",
         img: "placeholder",
         boxcount: 3
     },
@@ -98,14 +99,19 @@ var dailies = {
     },
 	"daily-lottery": {
         task: "Shadow Lottery",
+        time: "12-18-21",
+        duration: 1,
         url: "#",
         short: true,
-        desc: "Enter the Shadow Lottery. Available 12pm, 6pm and 9pm",
+        desc: "Enter the Shadow Lottery.",
         img: "signet",
         boxcount: 1
     },
 	"assembly": {
         task: "The Assembly",
+        time: "14-22",
+        duration: 2,
+        day: "1-2-3-4-5-6",
         url: "#",
         desc: "Collect all 4 blessings. The Assembly happens daily Monday until Saturday from 2pm to 10pm server time.",
         img: "assembly",

@@ -271,22 +271,9 @@ div.table_container[data-hide="hide"] .unhide_button {
 }
 
 .activity_table td.activity_name a:hover {
-    text-decoration: underline;
     color: #4083ca;
 }
 
-.activity_table tr:hover a::after {
-    content: '';
-    width: .6em;
-    height: .75em;
-    display: inline-block;
-    background-image: url("data:image/svg+xml;utf8;base64,PHN2ZyBoZWlnaHQ9IjEwMjQiIHdpZHRoPSI3NjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbD0iIzQwODNDQSI+PHBhdGggZD0iTTY0MCA3NjhIMTI4VjI1Ny45MDU5OTk5OTk5OTk5NUwyNTYgMjU2VjEyOEgwdjc2OGg3NjhWNTc2SDY0MFY3Njh6TTM4NCAxMjhsMTI4IDEyOEwzMjAgNDQ4bDEyOCAxMjggMTkyLTE5MiAxMjggMTI4VjEyOEgzODR6Ii8+PC9zdmc+");
-    background-size: auto;
-    background-size: cover;
-    position: relative;
-    top: 1px;
-    left: 5px;
-}
 
 .activity_table td.activity_color {
     cursor: pointer;

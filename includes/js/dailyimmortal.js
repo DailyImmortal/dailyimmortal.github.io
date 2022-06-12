@@ -83,6 +83,10 @@ const populateTable = function (timeFrame, char) {
             newRowAnchor.innerHTML = data[taskSlug].task
         }
 
+        if (!!data[taskSlug].time) {
+            newRowAnchor.innerHTML += "<br><br><p class='opencountdown' data-day='"+ data[taskSlug].day + "' data-duration='"+ data[taskSlug].duration + "' data-time='" + data[taskSlug].time + "'></p>"
+        }
+
         if (!!data[taskSlug].desc) {
 			let dust = data[taskSlug].desc.replace("{dust}", "<img class='icon' src='../includes/img/activities/dust.webp' alt=Dust/><b style="+"color:#ff0;"+">Enchanted Dust</b>");
             let gems = dust.replace("{gems}", "<img class='icon' src='../includes/img/activities/gem.webp' alt=Gems/><b style="+"color:#2bd999;"+">Normal Gems</b>");
@@ -428,6 +432,69 @@ const getTimezone = function(){
 	return parseInt(timezone.value);
 }
 
+const updateTimeContent = function(){
+    let serverTime = new Date();
+    serverTime.setHours(serverTime.getUTCHours() + -(getTimezone()-3))
+    for (countdownElement of document.querySelectorAll('p.opencountdown')){
+        let splittedId = countdownElement.dataset.time.split("-");
+
+        if (countdownElement.dataset.day !== "undefined"){
+
+            let openDays = countdownElement.dataset.day.split("-");
+
+            var currentDay = serverTime.getDay();
+            if (!openDays.includes(String(currentDay))) {
+                //exit if not open on current day
+                countdownElement.textContent = "Closed for today" //todo: set actual time
+                return;
+            }
+        }
+        
+        for (openTime of splittedId){
+            let startTime = new Date();
+            startTime.setHours(openTime);
+            startTime.setMinutes(0);
+            startTime.setSeconds(0);
+
+            let endTime = new Date();
+            let duration = parseInt(countdownElement.dataset.duration);
+            endTime.setHours(startTime.getHours() + duration);
+            endTime.setMinutes(0);
+            endTime.setSeconds(0);
+
+            if((serverTime.getTime() >= startTime.getTime() && serverTime.getTime() <= endTime.getTime() )){
+                let remainingtime = (endTime.getTime() - serverTime.getTime()) / 1000;
+                let timeparts = [
+                    Math.floor(remainingtime / 86400), //d
+                    Math.floor(remainingtime % 86400 / 3600), //h
+                    Math.floor(remainingtime % 3600 / 60), //m
+                    Math.floor(remainingtime % 60) //s
+                ];
+                countdownElement.textContent ="Closes in: " + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
+                break;
+            } else{
+
+                let remainingtime = (startTime.getTime() - serverTime.getTime()) / 1000;
+                let timeparts = [
+                    Math.floor(remainingtime / 86400), //d
+                    Math.floor(remainingtime % 86400 / 3600), //h
+                    Math.floor(remainingtime % 3600 / 60), //m
+                    Math.floor(remainingtime % 60) //s
+                ];
+
+                if(remainingtime > 0){
+                    countdownElement.textContent ="Opens in: " + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
+                    break;
+                }
+                else {
+                    countdownElement.textContent = "Closed for today" //todo: set actual time
+                }
+            }
+        }
+    }
+}
+
+
 /**
  * Check if last updated timestamp for a timeframe is less than
  * the last reset for that timeframe if so reset the category
@@ -445,11 +512,13 @@ const checkReset = function (timeFrame, char) {
     } else {
         tableUpdateTime = storage.getItem(timeFrame + '-updated') ?? 'false';
     }
+    
+    updateTimeContent();
 
     if (tableUpdateTime === 'false') {
         return false;
     }
-
+    
     let updateTime = new Date(parseInt(tableUpdateTime));
 
     let nextdate = new Date();

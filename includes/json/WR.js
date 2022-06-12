@@ -43,8 +43,10 @@ var weeklies = {
     },
     "vault": {
         task: "Vault",
+        time: "12-19",
+        duration: 2,
         url: "#",
-        desc: "Complete vault runs until max rewards. Available 12pm-2pm and 7pm-9pm server time.",
+        desc: "Complete vault runs until max rewards.",
         img: "gold",
         boxcount: 1
     },
