@@ -332,7 +332,12 @@ const draggableTable = function (timeFrame, char) {
 const resetTable = function (timeFrame, html, char) {
     profilePrefix = char;
     let tableRows = document.querySelectorAll('#' + timeFrame + '_table tbody tr input');
-    
+	let tableRowsFront = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
+ 
+	for (let rowTarget of tableRowsFront) {
+		rowTarget.dataset.completed = false;
+    }
+	
     for (let rowTarget of tableRows) {
         rowTarget.checked =false;
         storage.setItem(rowTarget.id + rowTarget.name, false);
@@ -501,7 +506,7 @@ const updateTimeContent = function(){
  */
 const checkReset = function (timeFrame, char) {
     profilePrefix = char;
-    const resetHour = getTimezone();
+    const resetHour = getTimezone()+9;
     const resetday = 1;
     let tableUpdateTime;
 
@@ -555,7 +560,7 @@ const checkReset = function (timeFrame, char) {
  * @param {String} timeFrame
  */
 const countDown = function (timeFrame) {
-    const resetHour = getTimezone();
+    const resetHour = getTimezone()+9;
     const resetday = 1; // Monday
     const isAfterDailyReset = new Date().getUTCHours() >= resetHour;
     const isAfterWeeklyReset = new Date().getUTCDay() == resetday;
