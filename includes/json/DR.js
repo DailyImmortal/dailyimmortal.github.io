@@ -113,7 +113,7 @@ var dailies = {
         duration: 2,
         day: "1-2-3-4-5-6",
         url: "#",
-        desc: "Collect all 4 blessings. The Assembly happens daily Monday until Saturday from 2pm to 10pm server time.",
+        desc: "Collect all 4 blessings.",
         img: "assembly",
         boxcount: 4
     },

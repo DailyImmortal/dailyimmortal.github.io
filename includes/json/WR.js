@@ -20,8 +20,8 @@ var weeklies = {
         img: "placeholder",
         boxcount: 3
     },
-    "elder-rifts": {
-        task: "Elder Rifts",
+    "fading-ember": {
+        task: "Fading Ember",
         url: "#",
         desc: "Run Elder Rifts to collect 320 {ember}",
         img: "ember",
