@@ -28,19 +28,9 @@ const populateTable = function (timeFrame, char) {
     const tbody = table.querySelector('tbody');
 
     //Hidden table
-    if (profilePrefix != null) {
-        hideTable = storage.getItem(profilePrefix + '-' + timeFrame + '-hide') ?? 'false';
-    } else {
-        hideTable = storage.getItem(timeFrame + '-hide') ?? 'false';
-    }
-
+    hideTable = storage.getItem(timeFrame + '-hide') ?? 'false';
     if (hideTable == 'hide') {
-        if (profilePrefix != null) {
-            document.querySelector('div.' + profilePrefix + '_' + timeFrame + '_table').dataset.hide = 'hide';
-        } else {
-            document.querySelector('div.' + timeFrame + '_table').dataset.hide = 'hide';
-        }
-
+        document.querySelector('div.' + timeFrame + '_table').dataset.hide = 'hide';
     }
 
     //User defined sorting
@@ -130,8 +120,12 @@ const populateTable = function (timeFrame, char) {
                 }
             }
         }
+        let hidden = storage.getItem(taskSlug);
+        if (hidden === 'hide'){
+            checkState = hidden;
+        }
         
-        tbody.appendChild(newRow);
+        tbody.appendChild(newRow);        
         newRow.dataset.completed = checkState;
     }
 
@@ -199,12 +193,7 @@ const tableEventListeners = function () {
             
             //save state
             storage.setItem(box.id + box.name, box.checked);
-            
-            if (thisCharacter != null) {
-                storage.setItem(thisCharacter + '-' + thisTimeframe + '-updated', new Date().getTime());
-            } else {
-                storage.setItem(thisTimeframe + '-updated', new Date().getTime());
-            }
+            storage.setItem(thisTimeframe + '-updated', new Date().getTime());
         });
     }
     
@@ -359,25 +348,21 @@ const resettableSection = function (timeFrame, char) {
     let data = window[timeFrame];
     let resetButton;
 
-    if (profilePrefix != null) {
-        resetButton = document.querySelector('#' + profilePrefix + '_' + timeFrame + '_reset_button');
-    } else {
-        resetButton = document.querySelector('#' + timeFrame + '_reset_button');
-    }
+    resetButton = document.querySelector('#' + timeFrame + '_reset_button');
 
     resetButton.addEventListener('click', function () {
+        for (let taskSlug in data) {
+            let itemState = storage.getItem(taskSlug) ?? 'false';
+            if (itemState === 'hide') {
+                storage.removeItem(taskSlug);
+            }
+        }
+        
         let thisCharacter = this.closest('table').dataset.character;
         resetTable(timeFrame, false, thisCharacter);
-    
-        if (profilePrefix != null) {
-            eventTracking("reset", "layout", profilePrefix + '-' + timeFrame + '-order');
-            storage.removeItem(profilePrefix + '-' + timeFrame + '-order');
-            storage.removeItem('pos_' + profilePrefix + '_' + timeFrame + '_table');
-        } else {
-            eventTracking("reset", "layout", timeFrame + '-order');
-            storage.removeItem(timeFrame + '-order');
-            storage.removeItem('pos_' + timeFrame);
-        }
+        eventTracking("reset", "layout", timeFrame + '-order');
+        storage.removeItem(timeFrame + '-order');
+        storage.removeItem('pos_' + timeFrame);
         window.location.reload();
     });
 };
