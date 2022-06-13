@@ -506,7 +506,7 @@ const updateTimeContent = function(){
  */
 const checkReset = function (timeFrame, char) {
     profilePrefix = char;
-    const resetHour = getTimezone()+9;
+    const resetHour = getTimezone();
     const resetday = 1;
     let tableUpdateTime;
 
@@ -560,7 +560,7 @@ const checkReset = function (timeFrame, char) {
  * @param {String} timeFrame
  */
 const countDown = function (timeFrame) {
-    const resetHour = getTimezone()+9;
+    const resetHour = getTimezone();
     const resetday = 1; // Monday
     const isAfterDailyReset = new Date().getUTCHours() >= resetHour;
     const isAfterWeeklyReset = new Date().getUTCDay() == resetday;
