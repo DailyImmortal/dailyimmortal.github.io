@@ -109,7 +109,7 @@ var dailies = {
     },
 	"assembly": {
         task: "The Assembly",
-        time: "14-22",
+        time: "18",
         duration: 2,
         day: "1-2-3-4-5-6",
         url: "#",
