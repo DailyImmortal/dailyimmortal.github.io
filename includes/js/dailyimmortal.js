@@ -17,7 +17,8 @@ const populateTable = function (timeFrame, char) {
     let table;
     let hideTable;
     let customOrder;
-
+    let compactLayout = document.body.classList.contains('compact');
+		
     const sampleRow = document.querySelector('#sample_row');
     if (profilePrefix != null) {
         table = document.getElementById(profilePrefix + '_' + timeFrame + '_table');
@@ -86,8 +87,6 @@ const populateTable = function (timeFrame, char) {
 
 			newRowColor.innerHTML = crest2;
         }
-
-        let compactLayout = document.body.classList.contains('compact');
         
         let checkState = true;
         if (!!data[taskSlug].boxcount) {
@@ -152,6 +151,23 @@ const populateTable = function (timeFrame, char) {
             tbody.appendChild(sortedrow);
         }
     }
+	
+	let tableRowsFront = document.querySelectorAll('#' + timeFrame + '_table tbody tr');
+	for (let rowTarget of tableRowsFront) {
+		let checked = true;
+		let checkboxes = rowTarget.querySelectorAll('input.form-check-input')
+				
+		if(compactLayout){
+			checked = checkboxes[0].checked;
+		} else {
+			checked = rowTarget.dataset.completed =='true';
+		}
+
+		if(checked) {
+			let rowArray = Array.from(document.querySelectorAll('#' + timeFrame + '_table tbody tr'));
+			rowArray[rowArray.length-1].after(rowTarget);
+		}
+    }
 
     let tableRows = Array.from(tbody.querySelectorAll('tr'));
     for (let row of tableRows) {
@@ -190,6 +206,12 @@ const tableEventListeners = function () {
             if (!compactLayout) {
                 thisRow.dataset.completed = checked;
             }
+			
+			//move row to bottom
+			if(checked) {
+				let rowArray = Array.from(document.querySelectorAll('#' + thisTimeframe + '_table tbody tr'));
+				rowArray[rowArray.length-1].after(thisRow);
+			}
             
             //save state
             storage.setItem(box.id + box.name, box.checked);
