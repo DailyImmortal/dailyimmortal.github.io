@@ -1,0 +1,288 @@
+
+:root {
+  --common-background-color: #111;
+  --main-background-color: #1f1f1f;
+  --main-color: #c2c2c2;
+  --heading-color: #fdfdfd;
+  --fieldset-border: #3f3f3f;
+  --a-color: #cb2b78;
+  --blockquote-color: #aaa;
+  --blockquote-cite-color: #333;
+  --blockquote-cite-color-hover: #666;
+  --accent-one: #fb4040;
+  --accent-two: #333333;
+  --mark-background: #03071c;
+  --pre-background: #050505;
+  --class-site-background-color: #0e0e0e;
+  --badge-color: #333333;
+  --badge-unrel-text: #424242;
+  --links-unrel-text: #313131;
+  --button-color: #737373;
+  --class-site-color: #de8a64;
+  --main-border-color: #f0f0f0;
+  --menu-color: #595959;
+  --class-top-bar-background-color: #313131;
+  --menu-text-color: #c2c2c2;
+  --class-page-links-color: #999;
+  --site-description-color: #bbb;
+  --class-comment-list-background: #0d0d0d;
+  --class-avatar-border: #262626;
+  --class-comment-list-author-color: #ccc;
+  --class-comment-respond-background-color: #090909;
+  --class-comment-alert-color: #3fc6d4;
+  --parent-anchor-arrow-color: #404040;
+  --time-new-badge-color: #fff;
+  --class-badge-front-color: #d4d4d4;
+  --class-time-new-badge-background-color: #7289da;
+  --alert-color: #728ada;
+  --alert-border-color: #232323;
+  --kbd-box-shadow-color: rgba(0, 0, 0, 0.25);
+  --forms-input-textarea-background-color: rgba(0, 0, 0, 0);
+  --class-screen-reader-text-box-shadow: rgba(255, 255, 255, 0.6);
+  --class-skip-link-box-shadow: rgba(255, 255, 255, 0.2);
+  --class-media-element-volume-background: rgba(0, 0, 0, 0.33);
+  --class-sf-menu-ul: rgba(255, 255, 255, 0.1);
+  --media-large-desktop-box-shadow: rgba(255, 255, 255, 0.175);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  box-sizing: border-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+fieldset {
+  border: 1px solid var(--fieldset-border);
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+  border: 0;
+  padding: 0;
+}
+
+textarea {
+  overflow: auto;
+}
+
+optgroup {
+  font-weight: bold;
+}
+
+/*--------------------------------------------------------------
+2.0 Font Awesome
+--------------------------------------------------------------*/
+.toggle-menu-control:before,
+.sf-arrows .sf-with-ul:after,
+.header-menu-responsive .dropdown-toggle:after,
+.comment-navigation .nav-previous a:before,
+.comment-navigation .nav-next a:after,
+.paging-navigation .nav-previous a:before,
+.paging-navigation .nav-next a:after,
+.image-navigation .nav-previous a:before,
+.image-navigation .nav-next a:after,
+.pagination .prev.page-numbers:before,
+.pagination .next.page-numbers:after,
+.more-link-wrapper .more-link:after,
+.entry-meta .post-first-category a:before,
+.entry-meta .byline:before,
+.entry-meta .posted-on a:before,
+.entry-meta .post-edit-link-meta a:before,
+.entry-meta .parent-post-link a:before,
+.entry-meta .full-size-link a:before,
+.post-label:before,
+.more-link:before,
+.search-submit:before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+
+/*--------------------------------------------------------------
+3.0 Typography
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+3.1 Global
+--------------------------------------------------------------*/
+body {
+  background: var(--main-background-color);
+  color: var(--main-color);
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*--------------------------------------------------------------
+3.3 Headings
+--------------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  clear: both;
+  color: var(--heading-color);
+  font-family: "Nunito Sans", sans-serif;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 32px;
+  font-size: 2rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+
+h2 {
+  font-size: 26px;
+  font-size: 1.625rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+
+h3 {
+  font-size: 23px;
+  font-size: 1.4375rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+
+h4 {
+  font-size: 16px;
+  font-size: 1rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+
+h5 {
+  font-size: 12px;
+  font-size: 0.75rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+  -webkit-text-stroke: .35px;
+  /* Hack to fix thin text in Windows */
+}
+
+h6 {
+  font-size: 10px;
+  font-size: 0.625rem;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+  -webkit-text-stroke: .35px;
+  /* Hack to fix thin text in Windows */
+}
+
+/*--------------------------------------------------------------
+4.3 Table
+--------------------------------------------------------------*/
+/* Table Reboot */
+table {
+  table-layout: fixed;
+  /* Prevents HTML tables from becoming too wide */
+}
+
+/* Table Styles */
+table {
+  background-color: transparent;
+  border-spacing: 0;
+  border-collapse: collapse;
+  min-width: 100%;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+
+table caption {
+  margin-bottom: 15px;
+  margin-bottom: 0.9375rem;
+}
+
+table th,
+table td {
+  padding: 8px;
+  padding: 0.5rem;
+  line-height: 1.5;
+  vertical-align: top;
+  border-bottom: 1px solid var(--accent-two);
+}
+
+table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid var(--accent-two);
+  font-weight: 700;
+}
+
+table tbody + tbody {
+  border-top: 2px solid var(--accent-two);
+}
+
+table table {
+  background-color: var(--pre-background);
+}
+
+
+@media (min-width: 768px) {
+  /* Typography: Global */
+  body {
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+  /* Typography: Paragraph */
+  p {
+    font-size: 18px;
+    font-size: 1.125rem;
+    margin-bottom: 32px;
+    margin-bottom: 2rem;
+  }
+ 
+  /* Elements: HR */
+  hr {
+    margin: 0 auto 32px;
+    margin: 0 auto 2rem;
+  }
+
+  /* Elements: Table */
+  table {
+    margin-bottom: 32px;
+    margin-bottom: 2rem;
+  }
+  table caption {
+    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
+  }
+  table th,
+  table td {
+    padding: 12px;
+    padding: 0.75rem;
+  }
+ 
+.day-of-week td{
+  border-bottom: none !important;
+}
+
+.day-of-week td h2{
+  margin-bottom: 8px;
+  margin-top: 15px;
+}
+
