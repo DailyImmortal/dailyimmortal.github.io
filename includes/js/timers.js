@@ -8,14 +8,14 @@ const countDown = function () {
     serverTime.setHours(serverTime.getUTCHours() + -(getTimezone()-3));
 
 	let elements = document.querySelectorAll("td.all-schedule-time");
-	let currentDay = serverTime.getDay();
 
 	let now = new Date();
 	let timeCheck = (serverTime.getTime() - now.getTime()) / 1000;
 	if (Math.floor(timeCheck / 86400) > 0){
 		serverTime.setUTCDate(serverTime.getUTCDate() - 1);
 	}
-	
+
+	let currentDay = serverTime.getDay();
 	document.getElementById('countdown-ST').innerHTML = serverTime.toLocaleString();
 	
 	for (let element of elements) {
@@ -38,7 +38,7 @@ const countDown = function () {
 					Math.floor(remainingtime % 60) //s
 				];
 
-				element.innerHTML  = (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
+				element.innerHTML  = element.dataset.hours + ":" + element.dataset.minutes + " (" + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's' +")";
 			}
 		}
 	}
