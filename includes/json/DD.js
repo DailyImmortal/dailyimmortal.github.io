@@ -15,14 +15,6 @@ var dailydrops = {
         img: "gem",
         boxcount: 6
     },
-    "daily-leg": {
-        task: "Legendary and Set",
-        url: "#",
-        short: true,
-        desc: "After the ~6th drop of the day, the drop rate becomes absurdly low",
-        img: "placeholder",
-        boxcount: 6
-    },
     "daily-side": {
         task: "Blue Side Quests",
         url: "#",
