@@ -1,6 +1,6 @@
 const storage = window.localStorage;
 
-const timeframesRoster = ['dailies', 'weeklies', 'monthlies', 'dailydrops'];
+const timeframesRoster = ['dailies', 'weeklies', 'monthlies', 'dailydrops', 'immortaldailies'];
 
 var currentProfile = 'default';
 var currentLayout = 'default';
@@ -84,8 +84,9 @@ const populateTable = function (timeFrame, char) {
             let ember = gems.replace("{ember}", "<img class='icon' src='../includes/img/activities/ember.webp' alt=Ember/><b style="+"color:#5aabef;"+">Fading Ember</b>");
 			let crest1 = ember.replace("{rare_crest}", "<img class='icon' src='../includes/img/activities/rare_crest.webp' alt=RareCrest/><b style="+"color:#ff0;"+">Rare Crest</b>");
 			let crest2 = crest1.replace("{leg_crest}", "<img class='icon' src='../includes/img/activities/leg_crest.webp' alt=LegendaryCrest/><b style="+"color:#bf642f;"+">Legendary Crest</b>");
+			let dominance = crest2.replace("{dominance}", "<img class='icon' src='../includes/img/activities/dominance.webp' alt=SigilOfDominance/><b style="+"color:#5aabef;"+">Sigil of Dominance</b>");
 
-			newRowColor.innerHTML = crest2;
+			newRowColor.innerHTML = dominance;
         }
         
         let checkState = true;
@@ -552,7 +553,7 @@ const checkReset = function (timeFrame, char) {
     if ((updateTime.getUTCHours() < resetHour || nextdate.getUTCHours() == resetHour) && updateTime.getTime() < nextdate.getTime() && isAfterReset) {
         if ((timeFrame == 'weeklies') && (updateTime.getUTCDay() < resetday || nextdate.getUTCDay() == resetday) && isAfterWeeklyReset) {
             resetTable(timeFrame, true, profilePrefix);
-        } else if (timeFrame == 'dailies' || timeFrame == 'dailydrops' ) {
+        } else if (timeFrame == 'dailies' || timeFrame == 'dailydrops' || timeFrame == 'immortaldailies' ) {
             resetTable(timeFrame, true, profilePrefix);
         } else if (timeFrame == 'monthlies') {
             resetTable(timeFrame, true, profilePrefix);
@@ -589,7 +590,7 @@ const countDown = function (timeFrame) {
         if (isAfterWeeklyReset && isAfterDailyReset) {
             nextdate.setUTCDate(nextdate.getUTCDate() + 7);
         }
-    } else if (timeFrame == 'dailies' || timeFrame == 'dailydrops') {
+    } else if (timeFrame == 'dailies' || timeFrame == 'dailydrops' || timeFrame == 'immortaldailies') {
         nextdate.setUTCHours(resetHour);
         nextdate.setUTCMinutes(0);
         nextdate.setUTCSeconds(0);
@@ -619,6 +620,10 @@ const countDown = function (timeFrame) {
     ];
 	
 	if (timeFrame == 'dailydrops'){
+        document.getElementById('th-countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
+    }
+
+	if (timeFrame == 'immortaldailies'){
         document.getElementById('th-countdown-' + timeFrame).innerHTML = (timeparts[0] > 0 ? (timeparts[0] + 'd ') : '') + (timeparts[1] > 0 ? (timeparts[1] + 'h ') : '') + timeparts[2] + 'm ' + timeparts[3] + 's';
     }
 

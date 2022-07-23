@@ -32,7 +32,8 @@
     <script src="includes/json/WR.js?v=1"></script>
     <script src="includes/json/MR.js?v=1"></script>
     <script src="includes/json/DD.js?v=1"></script>
-
+	<script src="includes/json/DI.js?v=1"></script>
+ 
     <script src="includes/js/dailyimmortal.js?v=37"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.10.11/interact.min.js"></script>
     <script src="includes/js/interact.js?v=2"></script>
@@ -202,6 +203,36 @@
                 <tbody></tbody>
             </table>
         </div>
+		
+        <div id="immortaldailies" class="table_container immortaldailies_table interact draggable" data-x="0" data-y="0">
+            <input type="checkbox" class="theme-switch" />
+            <table id="immortaldailies_table" class="activity_table table table-dark table-striped table-hover"
+                   data-timeframe="dailies">
+                <thead>
+                <tr>
+                    <th>Immortal Dailies <span id="th-countdown-immortaldailies" class="countdown"></span></th>
+                    <td>
+                        <span class="text-nowrap">
+                            <button class="drag-handle expanding_button btn btn-secondary btn-sm active"
+                                    title="Click, hold and drag to move section">✥<span
+                                    class="expanding_text"> Move</span></button>
+                            <button id="immortaldailies_hide_button"
+                                    class="hide_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Hide section">▲<span class="expanding_text"> Hide</span></button>
+                            <button id="immortaldailies_unhide_button"
+                                    class="unhide_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Unhide Section">▼<span class="expanding_text"> Unhide</span></button>
+                            <button id="immortaldailies_reset_button"
+                                    class="reset_button expanding_button btn btn-secondary btn-sm active"
+                                    title="Completely reset checked items, hiding, position, and order to default">↺<span
+                                    class="expanding_text"> Reset</span></button>
+                        </span>
+                    </td>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>	
         
         <div id="weeklies" class="table_container weeklies_table draggable" data-x="0" data-y="0">
             <input type="checkbox" class="theme-switch" />
