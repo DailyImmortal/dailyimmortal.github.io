@@ -84,9 +84,8 @@ const populateTable = function (timeFrame, char) {
             let ember = gems.replace("{ember}", "<img class='icon' src='../includes/img/activities/ember.webp' alt=Ember/><b style="+"color:#5aabef;"+">Fading Ember</b>");
 			let crest1 = ember.replace("{rare_crest}", "<img class='icon' src='../includes/img/activities/rare_crest.webp' alt=RareCrest/><b style="+"color:#ff0;"+">Rare Crest</b>");
 			let crest2 = crest1.replace("{leg_crest}", "<img class='icon' src='../includes/img/activities/leg_crest.webp' alt=LegendaryCrest/><b style="+"color:#bf642f;"+">Legendary Crest</b>");
-			let dominance = crest2.replace("{dominance}", "<img class='icon' src='../includes/img/activities/dominance.webp' alt=SigilOfDominance/><b style="+"color:#5aabef;"+">Sigil of Dominance</b>");
-
-			newRowColor.innerHTML = dominance;
+			
+			newRowColor.innerHTML = crest2;
         }
         
         let checkState = true;

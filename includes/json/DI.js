@@ -7,10 +7,10 @@ var immortaldailies = {
         boxcount: 1
     },
 	"id-sigil": {
-        task: "Contribute {dominance} to the Eternal Crown",
+        task: "Contribute Sigil of Dominance to the Eternal Crown",
         url: "#",
         desc: "10 Points",
-        img: "sigil_of_dominance",
+        img: "dominance",
         boxcount: 1
     },
 	"id-wall": {
