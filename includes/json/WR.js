@@ -23,7 +23,7 @@ var weeklies = {
     "fading-ember": {
         task: "Fading Ember",
         url: "#",
-        desc: "Run Elder Rifts to collect 320 {ember}",
+        desc: "Run Elder Rifts to collect 400 {ember}",
         img: "ember",
         boxcount: 1
     },
