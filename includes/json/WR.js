@@ -44,7 +44,7 @@ var weeklies = {
     "vault": {
         task: "Vault",
         time: "12-19",
-        duration: 2,
+        duration: 1,
         url: "#",
         desc: "Complete vault runs until max rewards.",
         img: "gold",
